@@ -1,0 +1,27 @@
+# Additional atom and topology definitions are described below.
+# If you want to overwrite the current topology, specify the exact number in
+#   the first colomn or the exact pair of bonded atoms.
+# Or if you want to add new topology, specify a larger number than original 
+#   number of bonds, angles, or torsions in the first colomn.
+# For ATOM, you can overwrite mass and/or charge, but "setcharge" has priority
+#   for setting charge.
+# !!! Current version does not support adding new atoms, but only overwrite.
+<ATOM>
+   5 CH
+   6 CT
+   8 CT 13.010
+  10 HC  1.008 -0.0100E+00
+
+<BOND>
+ 123 456 457 CT-CT
+ 124 458 459 HO-OH
+
+<ANGLE>
+ 234 567 568 569 CT-CT-CT
+ 235 580 581 582 HC-CT-HC
+
+<TORSION>
+ 345 678 679 680 681 X-CT-CT-X  
+ 346 682 683 684 685 X-CT-CT-X  
+
+<END>

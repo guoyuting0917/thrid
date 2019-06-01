@@ -1,0 +1,44 @@
+*** peachgk.ini	2010-04-11 21:42:23.923000000 +0900
+--- peachgk.ini	2010-07-06 19:05:03.019119500 +0900
+***************
+*** 1,4 ****
+! ### MD control script for peachgk Ver.4.6 '08.09.01 ###
+  
+  #input&output file name
+  iuwtopname      H2O_topOB.dat
+--- 1,4 ----
+! ### MD control script for peachgk Ver.4.7 '10.07.05 ###
+  
+  #input&output file name
+  iuwtopname      H2O_topOB.dat
+***************
+*** 26,31 ****
+--- 26,33 ----
+  # !!! set the polytyp for createcor after the polytyp for rdstarec
+  # !!! set "setcharge" to set partial charge value from cor file
+  # !!! set "localfix" to fix the atom position (iflocalfix must be ON)
++ # !!! set "localfixz" to fix the atom z position only (iflocalfixz must be ON)
++ #          Followed by index of atom to fix, and z position to fix.
+  # !!! set "localheat" and the following real value to keep the temperature
+  #         to the target value (iflocalheat must be ON)
+  # !!! set "posres" to impose position restraint (mole.) (ifposres must be ON)
+***************
+*** 189,194 ****
+--- 193,199 ----
+                          ! if use atom-base control, 
+                          ! make sure that mole. do not have any constraint bonding
+  iflocalfix      .false. ! fix atoms flag
++ iflocalfixz     .false. ! flag to fix atoms at a z coordinate
+  ifposres        .false. ! position restraint flag
+  ifpotbias       .false. ! bias potential flag (you need potbias.ini)
+  
+***************
+*** 220,226 ****
+  
+  ifcellindex     .true.          ! flag for cell index
+  
+- #!!! also related to MDGRAPE m3 setting
+  ifbook          .true.          ! flag for bookkeeping
+  rcut_book       14.0d-10        ! cut off radius of bookkeeping[m]
+                                  ! cell-index minimum length for ELE (MDG m3)
+--- 225,230 ----

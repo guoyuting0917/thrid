@@ -1,0 +1,35 @@
+--- ../peachgk-md-2.140/peachgk.ini	2015-02-17 23:38:17.205632700 +0900
++++ peachgk.ini	2015-03-28 18:43:25.595950100 +0900
+@@ -1,4 +1,4 @@
+-### MD control script for peachgk Ver.5.5 '15.02.17 ###
++### MD control script for peachgk Ver.5.6 '15.03.28 ###
+ 
+ #input&output file name
+ iuwtopname       H2O_topOB.dat
+@@ -13,12 +13,12 @@
+ iostarecname     sta_peachgk-2.0.dat
+ 
+ ousumname        out_sum.dat
+-ouenename        out_ene.dat
+-ouposname        out_pos.dat
+-ouvelname        out_vel.dat
+-outhename        out_the.dat
+-oubarname        out_bar.dat
+-ouprename        out_pre.dat
++ouenename        out_ene.dat  .true.
++ouposname        out_pos.dat  .true.
++ouvelname        out_vel.dat  .true.
++outhename        out_the.dat  .true.
++oubarname        out_bar.dat  .true.
++ouprename        out_pre.dat  .true.
+ outhcname        out_thc.dat
+ oupdbname        out_pdb.pdb
+ 
+@@ -216,6 +216,7 @@
+ iflocalheat     .false. ! local heating flag
+ ifregionheat    .false. ! region temp. control flag (you need tempcont.ini)
+ ifregionhf      .false. ! region h.f. control flag (you need hfcont.ini)
++ifreglange      .false. ! region Langevin thermostat (you need langecont.ini)
+ iftcratom       .true.  ! region temp. control based on atom (T) or mole. (F)
+                         ! if use atom-base control, 
+                         ! make sure that mole. do not have any constraint bonding

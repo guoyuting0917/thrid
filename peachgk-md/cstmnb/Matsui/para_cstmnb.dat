@@ -1,0 +1,16 @@
+; This custom NB (nonbonded) interaction parameter file can be freely tweaked.
+; You should also modify rdpara_cstmnb.F90 and cstmnb.F90 so that this 
+; parameter file is properly read and executed by peachgk_md.
+
+; CUSTOM NB parameters for Matsui potential designed for metal oxside substrate.
+; (Matsui, M. Miner. Mag., Vol. 58A, pp. 571-572, (1994).;
+;  Adiga, S.P. et al., J. Phys. Chem. C, Vol. 111, pp. 7422-7429, (2007) for HI)
+; The order of the potential parameters is as follows.
+; <index> <atom type> <rcut_MATSUI> <rcut_bookMATSUI> <nstep_bookMATSUI>
+; <A_MATSUI> <B_MATSUI> <C_MATSUI(CiCi)> <D_MATSUI>
+<CUSTOM_NB>
+   1  AL  12.0E-10  14.0E-10  50  7.8520E-11  3.400E-12  2.251E-78  6.9477E-11
+   2  OI  12.0E-10  14.0E-10  50  1.8215E-10  1.380E-11  1.363E-77  6.9477E-11
+   3  HI  12.0E-10  14.0E-10  50 -1.7607E-11 -2.462E-12  5.762E-81  6.9477E-11
+
+<END>

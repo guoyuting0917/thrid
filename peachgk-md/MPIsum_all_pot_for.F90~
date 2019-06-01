@@ -1,0 +1,318 @@
+!**********************************
+!*  MPIsum_all_pot_for.f Ver.2.3  *
+!*      for peachgk_md.f          *
+!*            by G.Kikugawa       *
+!**********************************
+! Time-stamp: <2015-07-18 00:07:11 gota>
+
+subroutine MPIsum_all_pot_for(mts_flag, &
+     &                        mts_bond,mts_angl,mts_anglub, &
+     &                        mts_tors,mts_torsrb,mts_torsim, &
+     &                        mts_vdw,mts_ewr,mts_ewk, &
+     &                        mts_vdw14,mts_elc14, &
+     &                        mts_mor,mts_sh,mts_rfh,mts_dou,mts_cnpvw, &
+     &                        mts_cstmnb, &
+     &                        mts_posres, &
+     &                        mts_potbias, &
+     &                        force, &
+     &                        pot_vdw,pot_elc,pot_ewk, &
+     &                        pot_vdw14,pot_elc14, &
+     &                        pot_bond,pot_angl,pot_anglub, &
+     &                        pot_tors,pot_torsrb,pot_torsim, &
+     &                        pot_mor, &
+     &                        pot_sh, &
+     &                        pot_rfh, &
+     &                        pot_dou, &
+     &                        pot_rpvw,pot_vw, &
+     &                        pot_cstmnb, &
+     &                        ncstmnbex,pot_cstmnbex, &
+     &                        pot_posres, &
+     &                        pot_pbias)
+
+  use md_global
+  use mpi_global
+
+  implicit none
+
+!     subroutine to calculate force
+
+! ARGUMENT:
+!   INPUT
+  integer,intent(in):: mts_flag         ! flag for MTS integration
+                                        ! 1 long-range force mode    
+                                        ! 2 medium-range force mode
+                                        ! 3 short-range force mode
+
+  integer,intent(in):: mts_bond         ! MTS flag for bond
+  integer,intent(in):: mts_angl         ! MTS flag for angle
+  integer,intent(in):: mts_anglub       ! MTS flag for Urey-Bradley angle
+  integer,intent(in):: mts_tors         ! MTS flag for torsion
+  integer,intent(in):: mts_torsrb       ! MTS flag for torsionrb
+  integer,intent(in):: mts_torsim       ! MTS flag for torsionim
+  integer,intent(in):: mts_vdw          ! MTS flag for vdw interaction
+  integer,intent(in):: mts_ewr          ! MTS flag for ewald real(=vdw)
+  integer,intent(in):: mts_ewk          ! MTS flag for ewald wave
+  integer,intent(in):: mts_vdw14        ! MTS flag for 14vdw
+  integer,intent(in):: mts_elc14        ! MTS flag for 14elc
+  integer,intent(in):: mts_mor          ! MTS flag for Morse interaction
+  integer,intent(in):: mts_sh           ! MTS flag for SH interaction
+  integer,intent(in):: mts_rfh          ! MTS flag for RFH interaction
+  integer,intent(in):: mts_dou          ! MTS flag for DOU interaction
+  integer,intent(in):: mts_cnpvw        ! MTS flag for CNP_VW
+  integer,intent(in):: mts_cstmnb       ! MTS flag for custom NB interaction
+  integer,intent(in):: mts_posres       ! MTS flag for position restraint
+  integer,intent(in):: mts_potbias      ! MTS flag for bias potential
+
+  integer,intent(in):: ncstmnbex        ! number of extra custom NB output
+
+!   INPUT & OUTPUT
+  real(8),intent(inout):: force(:,:)    ! force calculated here
+
+!   OUTPUT
+!---- potential
+  real(8),intent(out):: pot_vdw         ! vdw potential
+  real(8),intent(out):: pot_elc         ! coulomb potential(ewald real)
+  real(8),intent(out):: pot_ewk         ! coulomb potential(ewald wave)
+  real(8),intent(out):: pot_vdw14       ! 1-4vdw potential
+  real(8),intent(out):: pot_elc14       ! 1-4elc potential
+  real(8),intent(out):: pot_bond        ! bond potential
+  real(8),intent(out):: pot_angl        ! angle potential
+  real(8),intent(out):: pot_anglub      ! Urey-Bradley angle potential
+  real(8),intent(out):: pot_tors        ! torsion potential
+  real(8),intent(out):: pot_torsrb      ! RBtorsion potential
+  real(8),intent(out):: pot_torsim      ! improper torsion potential
+  real(8),intent(out):: pot_mor         ! Morse potential
+  real(8),intent(out):: pot_sh          ! SH potential
+  real(8),intent(out):: pot_rfh         ! RFH potential
+  real(8),intent(out):: pot_dou         ! DOU potential
+  real(8),intent(out):: pot_rpvw        ! RP-VW interaction
+  real(8),intent(out):: pot_vw          ! potential of constant force
+  real(8),intent(out):: pot_cstmnb      ! Custom NB potential
+  real(8),intent(out):: pot_cstmnbex(:) ! extra Custom NB potential
+  real(8),intent(out):: pot_posres      ! position restraint potential
+  real(8),intent(out):: pot_pbias       ! bias potential
+
+! LOCAL:
+  integer:: i                           ! do loop index
+
+! MPI local variable for message passing
+  real(8):: for_local(3,maxnatom)       ! local force for MPI
+
+  integer:: msg_length_pot              ! message length for potential
+  real(8),allocatable:: pot_local(:)       ! local potential for MPI
+  real(8),allocatable:: pot_global(:)      ! global potential for MPI
+
+  integer:: maxnintrct
+
+!     +     +     +     +     +     +     +
+
+!---- memory allocation
+
+  maxnintrct = 20   ! fixed number of interations
+  maxnintrct = maxnintrct + ncstmnbex
+
+  allocate(pot_local(maxnintrct))
+  allocate(pot_global(maxnintrct))
+
+! abbreviate the initialization of local parameters
+
+!---- MPI for force
+
+  for_local(1:3,1:natom) = force(1:3,1:natom)
+
+  call MPI_ALLREDUCE(for_local,force,3*natom,   &
+       &             MPI_DOUBLE_PRECISION,   &
+       &             MPI_SUM,MPI_COMM_WORLD,ierror)
+
+!---- MPI for potential
+
+  if (mts_flag == MTS_LONG) then   ! only sum when loop mts_long
+
+!    store to local variables
+     msg_length_pot = 0
+
+     msg_length_pot = msg_length_pot + 1
+     pot_local(msg_length_pot) = pot_bond
+
+     msg_length_pot = msg_length_pot + 1
+     pot_local(msg_length_pot) = pot_angl
+
+     msg_length_pot = msg_length_pot + 1
+     pot_local(msg_length_pot) = pot_anglub
+
+     msg_length_pot = msg_length_pot + 1
+     pot_local(msg_length_pot) = pot_tors
+
+     msg_length_pot = msg_length_pot + 1
+     pot_local(msg_length_pot) = pot_torsrb
+
+     msg_length_pot = msg_length_pot + 1
+     pot_local(msg_length_pot) = pot_torsim
+
+     msg_length_pot = msg_length_pot + 1
+     pot_local(msg_length_pot) = pot_vdw14
+
+     msg_length_pot = msg_length_pot + 1
+     pot_local(msg_length_pot) = pot_elc14
+
+     msg_length_pot = msg_length_pot + 1
+     pot_local(msg_length_pot) = pot_vdw
+!!-------------------------------------------------------------------------
+      msg_length_pot = msg_length_pot + 1
+      pot_local(msg_length_pot) = wall_pot_interface_1_ar1
+
+      msg_length_pot = msg_length_pot + 1
+      pot_local(msg_length_pot) = wall_pot_interface_1_ar2
+
+      msg_length_pot = msg_length_pot + 1
+      pot_local(msg_length_pot) = wall_pot_interface_2_ar1
+
+      msg_length_pot = msg_length_pot + 1
+      pot_local(msg_length_pot) = wall_pot_interface_2_ar2
+
+      msg_length_pot = msg_length_pot + 1
+      pot_local(msg_length_pot) = wall_pot_interface_no
+
+            !!--------------------------------------------------------
+
+     msg_length_pot = msg_length_pot + 1
+     pot_local(msg_length_pot) = pot_elc
+
+     msg_length_pot = msg_length_pot + 1
+     pot_local(msg_length_pot) = pot_ewk
+
+     msg_length_pot = msg_length_pot + 1
+     pot_local(msg_length_pot) = pot_mor
+
+     msg_length_pot = msg_length_pot + 1
+     pot_local(msg_length_pot) = pot_sh
+
+     msg_length_pot = msg_length_pot + 1
+     pot_local(msg_length_pot) = pot_rfh
+
+     msg_length_pot = msg_length_pot + 1
+     pot_local(msg_length_pot) = pot_dou
+
+     msg_length_pot = msg_length_pot + 1
+     pot_local(msg_length_pot) = pot_rpvw
+
+     msg_length_pot = msg_length_pot + 1
+     pot_local(msg_length_pot) = pot_vw
+
+     msg_length_pot = msg_length_pot + 1
+     pot_local(msg_length_pot) = pot_cstmnb
+
+     do i = 1, ncstmnbex
+        msg_length_pot = msg_length_pot + 1
+        pot_local(msg_length_pot) = pot_cstmnbex(i)
+     end do
+
+     msg_length_pot = msg_length_pot + 1
+     pot_local(msg_length_pot) = pot_posres
+
+     msg_length_pot = msg_length_pot + 1
+     pot_local(msg_length_pot) = pot_pbias
+
+!    MPI allreduce for potential
+     call MPI_ALLREDUCE(pot_local,pot_global,msg_length_pot,   &
+          &             MPI_DOUBLE_PRECISION,   &
+          &             MPI_SUM,MPI_COMM_WORLD,ierror)
+
+!    restore from global variables
+     msg_length_pot = 0
+
+     msg_length_pot = msg_length_pot + 1
+     pot_bond = pot_global(msg_length_pot)
+
+     msg_length_pot = msg_length_pot + 1
+     pot_angl = pot_global(msg_length_pot)
+
+     msg_length_pot = msg_length_pot + 1
+     pot_anglub = pot_global(msg_length_pot)
+
+     msg_length_pot = msg_length_pot + 1
+     pot_tors = pot_global(msg_length_pot)
+
+     msg_length_pot = msg_length_pot + 1
+     pot_torsrb = pot_global(msg_length_pot)
+
+     msg_length_pot = msg_length_pot + 1
+     pot_torsim = pot_global(msg_length_pot)
+
+     msg_length_pot = msg_length_pot + 1
+     pot_vdw14 = pot_global(msg_length_pot)
+
+     msg_length_pot = msg_length_pot + 1
+     pot_elc14 = pot_global(msg_length_pot)
+
+     msg_length_pot = msg_length_pot + 1
+     pot_vdw = pot_global(msg_length_pot)
+
+     !!-------------------------------------------------------------------------------
+
+     msg_length_pot = msg_length_pot + 1
+     wall_pot_interface_1_ar1 = pot_global(msg_length_pot)
+
+     msg_length_pot = msg_length_pot + 1
+     wall_pot_interface_1_ar2 = pot_global(msg_length_pot)
+
+     msg_length_pot = msg_length_pot + 1
+     wall_pot_interface_2_ar1 = pot_global(msg_length_pot)
+
+     msg_length_pot = msg_length_pot + 1
+     wall_pot_interface_2_ar2 = pot_global(msg_length_pot)
+
+     msg_length_pot = msg_length_pot + 1
+     wall_pot_interface_no = pot_global(msg_length_pot)
+
+     !!---------------------------------------------------------------------------------
+
+     
+
+     msg_length_pot = msg_length_pot + 1
+     pot_elc = pot_global(msg_length_pot)
+
+     msg_length_pot = msg_length_pot + 1
+     pot_ewk = pot_global(msg_length_pot)
+
+     msg_length_pot = msg_length_pot + 1
+     pot_mor = pot_global(msg_length_pot)
+
+     msg_length_pot = msg_length_pot + 1
+     pot_sh = pot_global(msg_length_pot)
+
+     msg_length_pot = msg_length_pot + 1
+     pot_rfh = pot_global(msg_length_pot)
+
+     msg_length_pot = msg_length_pot + 1
+     pot_dou = pot_global(msg_length_pot)
+
+     msg_length_pot = msg_length_pot + 1
+     pot_rpvw = pot_global(msg_length_pot)
+
+     msg_length_pot = msg_length_pot + 1
+     pot_vw = pot_global(msg_length_pot)
+
+     msg_length_pot = msg_length_pot + 1
+     pot_cstmnb = pot_global(msg_length_pot)
+
+     do i = 1, ncstmnbex
+        msg_length_pot = msg_length_pot + 1
+        pot_cstmnbex(i) = pot_global(msg_length_pot)
+     end do
+
+     msg_length_pot = msg_length_pot + 1
+     pot_posres = pot_global(msg_length_pot)
+
+     msg_length_pot = msg_length_pot + 1
+     pot_pbias = pot_global(msg_length_pot)
+
+  end if
+
+!---- memory release
+  deallocate(pot_local)
+  deallocate(pot_global)
+
+!     +     +     +     +     +     +     +
+
+end subroutine MPIsum_all_pot_for

@@ -1,0 +1,49 @@
+--- /home/gota/peachgk_md/peachgk-md-2.139/peachgk.ini	2015-01-08 10:14:11.000000000 +0900
++++ peachgk.ini	2015-02-17 23:38:17.205632700 +0900
+@@ -1,4 +1,4 @@
+-### MD control script for peachgk Ver.5.4 '15.01.06 ###
++### MD control script for peachgk Ver.5.5 '15.02.17 ###
+ 
+ #input&output file name
+ iuwtopname       H2O_topOB.dat
+@@ -7,6 +7,7 @@
+ iuparaconstname  para_const.dat
+ iuparacstmnbname para_cstmnb.dat
+ iuaddtopname     add_top.dat
++iustrmvelname    out_strmvel.dat
+ iuposresname     sta_peachgk-2.0.dat
+ 
+ iostarecname     sta_peachgk-2.0.dat
+@@ -52,6 +53,10 @@
+ # !!! set "centerfix" to fix barycentric velocity of each molecular speices
+ #         (ifcenterfix_poly, _water, or _ma must be ON
+ #          and ifcenterfix_all must be OFF)
++# !!! set "localvel*" with the direction-specifying letter x, y, or z in '*'
++#         or combinations of these options (localvelx and localvely, etc.)
++#         followed by a velocity value (in m/s unit)
++#         (iflocalvel must be .true. and centerfix of the atom must be .false.)
+ npolytyp        2
+ 
+ npolymoletyp      1       5       24 C7H15OH_cor.dat C7H15OH_top.dat  .true.
+@@ -211,9 +216,10 @@
+ iflocalheat     .false. ! local heating flag
+ ifregionheat    .false. ! region temp. control flag (you need tempcont.ini)
+ ifregionhf      .false. ! region h.f. control flag (you need hfcont.ini)
+-iftcratom       .false. ! region temp. control based on atom (T) or mole. (F)
++iftcratom       .true.  ! region temp. control based on atom (T) or mole. (F)
+                         ! if use atom-base control, 
+                         ! make sure that mole. do not have any constraint bonding
++                        ! this also influences assignment way of streaming vel.
+ ifoutthc        .false. ! flag for outputting thermal control file
+ 
+ iflocalfix      .false. ! fix atoms flag
+@@ -221,6 +227,9 @@
+ iflocalfixzg    .false. ! flag to fix COM of molecules at a z coordinate
+ ifposres        .false. ! position restraint flag
+ ifpotbias       .false. ! bias potential flag (you need potbias.ini)
++iflocalvel      .false. ! flag to force local atomic velocity
++ifstrmvel       .false. ! flag to input and use streaming velocity
++                        ! (you need output file of "lvs_vel" post-process)
+ 
+ #!!! if you use NPT dynamics, you must choose ifcalpremole or ifcalpreatom !!!
+ ifcalpremole    .true.

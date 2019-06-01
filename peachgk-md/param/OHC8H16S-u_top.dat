@@ -1,0 +1,34 @@
+<BOND>
+   1   1   9 CJ-SJ
+   2   2  10 CW-ON
+   3   2   3 ON-HN
+   4   4  11 CJ-CJ
+   5   4   5 CJ-CJ
+   6   5   6 CJ-CJ
+   7   6   7 CJ-CJ
+   8   7   8 CJ-CJ
+   9   8   9 CJ-CJ
+  10  10  11 CJ-CW
+
+<ANGLE>
+   1   1   9   8 CJ-CJ-SJ
+   2   2  10  11 CJ-CW-ON
+   3   3   2  10 CW-ON-HN
+   4   4   5   6 CJ-CJ-CJ
+   5   4  11  10 CJ-CJ-CW
+   6   5   4  11 CJ-CJ-CJ
+   7   5   6   7 CJ-CJ-CJ
+   8   6   7   8 CJ-CJ-CJ
+   9   7   8   9 CJ-CJ-CJ
+
+<TORSION_RB>
+   1   1   9   8   7 X-CJ-CJ-X  
+   2   2  10  11   4 X-CJ-CW-ON 
+   3   3   2  10  11 X-CW-ON-HN 
+   4   4   5   6   7 X-CJ-CJ-X  
+   5   5   4  11  10 X-CJ-CJ-X  
+   6   5   6   7   8 X-CJ-CJ-X  
+   7   6   5   4  11 X-CJ-CJ-X  
+   8   6   7   8   9 X-CJ-CJ-X  
+
+<END>

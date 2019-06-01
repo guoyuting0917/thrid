@@ -1,0 +1,18 @@
+<BOND>
+   1   1   2 CM-CA
+   2   2   3 CA-CA
+   3   3   4 CA-SA
+   4   4   5 SA-GA
+
+<ANGLE>
+   1   1   2   3 CM-CA-CA
+   2   2   3   4 CA-CA-SA
+   3   3   4   5 CA-SA-GA
+
+<TORSION>
+
+<TORSION_RB>
+   1   1   2   3   4 X-CA-CA-X
+   2   2   3   4   5 X-CA-SA-GA
+
+<END>

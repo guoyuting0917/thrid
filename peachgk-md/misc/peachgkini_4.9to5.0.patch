@@ -1,0 +1,37 @@
+*** /home/gota/peachgk_md/peachgk-md-2.134/peachgk.ini	2012-05-25 06:26:28.965090600 +0900
+--- ../peachgk.ini	2012-07-10 23:02:10.130965100 +0900
+***************
+*** 1,10 ****
+! ### MD control script for peachgk Ver.4.9 '12.05.22 ###
+  
+  #input&output file name
+  iuwtopname      H2O_topOB.dat
+  iuparavdwname   para_vdw_s.dat
+  iuparabondname  para_bond.dat
+  iuparaconstname para_const.dat
+  iuposresname    sta_peachgk-2.0.dat
+  
+  iostarecname    sta_peachgk-2.0.dat
+--- 1,11 ----
+! ### MD control script for peachgk Ver.5.0 '12.07.09 ###
+  
+  #input&output file name
+  iuwtopname      H2O_topOB.dat
+  iuparavdwname   para_vdw_s.dat
+  iuparabondname  para_bond.dat
+  iuparaconstname para_const.dat
++ iuaddtopname    add_top.dat
+  iuposresname    sta_peachgk-2.0.dat
+  
+  iostarecname    sta_peachgk-2.0.dat
+***************
+*** 124,129 ****
+--- 125,132 ----
+  ifstarec                .false. ! read old state
+  ifcreatecor             .true.  ! create new coordinate
+  
++ ifrdaddtop              .false. ! input additional topology information
++ 
+  ifcenterfix_all         .true.  ! if true, following options are ignored
+  ifcenterfix_poly        .true.
+  ifcenterfix_water       .true.

@@ -1,0 +1,58 @@
+<BOND>
+   1   1   2 CP-CY
+   2   1   4 CP-HP
+   3   1   5 CP-HP
+   4   1   6 CP-HP
+   5   2   3 CP-CY
+   6   2   7 CY-HP
+   7   2  11 CY-OA
+   8   3   8 CP-HP
+   9   3   9 CP-HP
+  10   3  10 CP-HP
+  11  11  12 OA-HA
+
+<ANGLE>
+   1   1   2   3 CP-CY-CP
+   2   1   2   7 CP-CY-HP
+   3   1   2  11 CP-CY-OA
+   4   2   1   4 CY-CP-HP
+   5   2   1   5 CY-CP-HP
+   6   2   1   6 CY-CP-HP
+   7   2   3   8 CY-CP-HP
+   8   2   3   9 CY-CP-HP
+   9   2   3  10 CY-CP-HP
+  10   2  11  12 CY-OA-HA
+  11   3   2   7 CP-CY-HP
+  12   3   2  11 CP-CY-OA
+  13   4   1   5 HP-CP-HP
+  14   4   1   6 HP-CP-HP
+  15   5   1   6 HP-CP-HP
+  16   7   2  11 HP-CY-OA
+  17   8   3   9 HP-CP-HP
+  18   8   3  10 HP-CP-HP
+  19   9   3  10 HP-CP-HP
+
+<TORSION_RB>
+   1   1   2   3   8 HP-CP-CY-CP
+   2   1   2   3   9 HP-CP-CY-CP
+   3   1   2   3  10 HP-CP-CY-CP
+   4   1   2  11  12 CP-CY-OA-HA
+   5   3   2   1   4 HP-CP-CY-CP
+   6   3   2   1   5 HP-CP-CY-CP
+   7   3   2   1   6 HP-CP-CY-CP
+   8   3   2  11  12 CP-CY-OA-HA
+   9   4   1   2   7 HP-CP-CY-HP
+  10   4   1   2  11 HP-CP-CY-OA
+  11   5   1   2   7 HP-CP-CY-HP
+  12   5   1   2  11 HP-CP-CY-OA
+  13   6   1   2   7 HP-CP-CY-HP
+  14   6   1   2  11 HP-CP-CY-OA
+  15   7   2   3   8 HP-CP-CY-HP
+  16   7   2   3   9 HP-CP-CY-HP
+  17   7   2   3  10 HP-CP-CY-HP
+  18   7   2  11  12 HP-CY-OA-HA
+  19   8   3   2  11 HP-CP-CY-OA
+  20   9   3   2  11 HP-CP-CY-OA
+  21  10   3   2  11 HP-CP-CY-OA
+
+<END>

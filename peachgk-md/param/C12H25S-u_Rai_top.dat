@@ -1,0 +1,40 @@
+<BOND>
+   1   1   2 CA-CA
+   2   1   4 CA-CA
+   3   2   3 CA-CA
+   4   3   5 CA-CA
+   5   4   6 CA-CA
+   6   5   7 CA-CA
+   7   6   8 CA-CA
+   8   7   9 CA-CA
+   9   8  10 CA-CA
+  10   9  11 CA-CA
+  11  10  12 CM-CA
+  12  11  13 CA-SA
+
+<ANGLE>
+   1   1   2   3 CA-CA-CA
+   2   1   4   6 CA-CA-CA
+   3   2   1   4 CA-CA-CA
+   4   2   3   5 CA-CA-CA
+   5   3   5   7 CA-CA-CA
+   6   4   6   8 CA-CA-CA
+   7   5   7   9 CA-CA-CA
+   8   6   8  10 CA-CA-CA
+   9   7   9  11 CA-CA-CA
+  10   8  10  12 CM-CA-CA
+  11   9  11  13 CA-CA-SA
+
+<TORSION_RB>
+   1   1   2   3   5 X-CA-CA-X  
+   2   1   4   6   8 X-CA-CA-X  
+   3   2   1   4   6 X-CA-CA-X  
+   4   2   3   5   7 X-CA-CA-X  
+   5   3   2   1   4 X-CA-CA-X  
+   6   3   5   7   9 X-CA-CA-X  
+   7   4   6   8  10 X-CA-CA-X  
+   8   5   7   9  11 X-CA-CA-X  
+   9   6   8  10  12 X-CA-CA-X  
+  10   7   9  11  13 X-CA-CA-X  
+
+<END>

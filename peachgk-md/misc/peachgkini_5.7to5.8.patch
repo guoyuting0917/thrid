@@ -1,0 +1,16 @@
+--- /home/gota/wsl/dev/peachgk_build/peachgk-md-2.142/peachgk.ini	2018-10-03 17:20:49.000000000 +0900
++++ peachgk.ini	2018-10-04 17:46:53.860842300 +0900
+@@ -1,4 +1,4 @@
+-### MD control script for peachgk Ver.5.7 '18.02.23 ###
++### MD control script for peachgk Ver.5.8 '18.10.03 ###
+ 
+ #input&output file name
+ iuwtopname       H2O_topOB.dat
+@@ -16,6 +16,7 @@
+ ouenename        out_ene.dat  .true.
+ ouposname        out_pos.dat  .true.
+ ouvelname        out_vel.dat  .true.
++ouforname        out_for.dat  .false.
+ outhename        out_the.dat  .true.
+ oubarname        out_bar.dat  .true.
+ ouprename        out_pre.dat  .true.

@@ -1,0 +1,65 @@
+<CONST_POLY>
+   1 O3-O3
+   2 O4-O4
+   3 N3-N3
+   4 T1-T2
+   5 T1-T6
+   6 T1-TL
+   7 T2-T3
+   8 T2-TA
+   9 T3-T4
+  10 T3-TB
+  11 T4-T5
+  12 T4-TC
+  13 T5-T6
+  14 T5-TD
+  15 T6-TE
+  16 TL-TH
+  17 TL-TI
+  18 TL-TJ
+  19 H2-OS
+  20 H2-SI
+  21 H3-SH
+;  xx CK-CJ ; originally restrained
+;  xx CJ-CJ ; originally restrained
+;  xx CJ-SJ ; originally restrained
+;  xx CJ-CW ; originally restrained
+
+<CONST_WATER>
+   1 HB-OB
+   2 HB-HB
+   3 HT-OT
+   4 HT-HT
+
+<CONST>
+   1 O3-O3
+   2 O4-O4
+   3 N3-N3
+   4 T1-T2
+   5 T1-T6
+   6 T1-TL
+   7 T2-T3
+   8 T2-TA
+   9 T3-T4
+  10 T3-TB
+  11 T4-T5
+  12 T4-TC
+  13 T5-T6
+  14 T5-TD
+  15 T6-TE
+  16 TL-TH
+  17 TL-TI
+  18 TL-TJ
+  19 H2-OS
+  20 H2-SI
+  21 H3-SH
+  22 HB-OB
+  23 HB-HB
+  24 HT-OT
+  25 HT-HT
+;  xx CK-CJ ; originally restrained
+;  xx CJ-CJ ; originally restrained
+;  xx CJ-SJ ; originally restrained
+;  xx CJ-CW ; originally restrained
+
+<END>

@@ -1,0 +1,64 @@
+--- peachgk-md-2.142/peachgk.ini	2015-09-08 23:43:53.000000000 +0900
++++ peachgk.ini	2018-06-14 01:28:23.272107200 +0900
+@@ -1,4 +1,4 @@
+-### MD control script for peachgk Ver.5.6 '15.03.28 ###
++### MD control script for peachgk Ver.5.7 '18.02.23 ###
+ 
+ #input&output file name
+ iuwtopname       H2O_topOB.dat
+@@ -38,7 +38,7 @@
+ #         to the target value (iflocalheat must be ON)
+ # !!! set "posres" to impose position restraint (mole.) (ifposres must be ON)
+ # !!! set "posresatm" to impose position restraint (atom) (ifposres must be ON)
+-#         Following the "posresatm", number of atoms for restraint, 
++#         Following the "posresatm", number of atoms for restraint,
+ #         indexes of atom for restraint are aligned.
+ #         Above posres schemes can be used with specifying the constraint
+ #         direction like posresx or posresatmy.
+@@ -142,6 +142,8 @@
+ ifrdaddtop              .false. ! input additional topology information
+ 
+ ifcenterfix_all         .true.  ! if true, following options are ignored
++cenfix_free             none    ! if 'x', 'y', or 'z' is specified,
++                                ! centerfix is not applied in that direction
+ ifcenterfix_poly        .true.
+ ifcenterfix_water       .true.
+ ifcenterfix_ma          .true.
+@@ -197,6 +199,10 @@
+ pext            0.1d6           ! external pressure [Pa]
+ ifpatmcont      .true.          ! atomic pressure control
+ ifpmolcont      .false.         ! molecular pressure control
++pcont_axis      iso             ! control axis for barostat
++                                ! "iso" for isotropic volume change
++                                ! "aniso" for anisotropic volume change
++                                !  "x", "y", or "z" for uniaxial volume change
+ 
+ # for higher order Trotter expansion
+ next            1               ! iteration number of extended system
+@@ -218,7 +224,7 @@
+ ifregionhf      .false. ! region h.f. control flag (you need hfcont.ini)
+ ifreglange      .false. ! region Langevin thermostat (you need langecont.ini)
+ iftcratom       .true.  ! region temp. control based on atom (T) or mole. (F)
+-                        ! if use atom-base control, 
++                        ! if use atom-base control,
+                         ! make sure that mole. do not have any constraint bonding
+                         ! this also influences assignment way of streaming vel.
+ ifoutthc        .false. ! flag for outputting thermal control file
+@@ -259,7 +265,7 @@
+ d_rmax         1.0d-10          ! maximum displacement dr for EM [m]
+ 
+ d_econv        1.0d-24          ! convergence condition for energy in EM [J]
+-d_rmsf         1.0d-13          ! convergence condition for 
++d_rmsf         1.0d-13          ! convergence condition for
+                                 !    root mean square force in EM [N]
+ 
+ # other MD parameters
+@@ -314,7 +320,7 @@
+ 
+ #SH cutoff
+ rcutsh          15.0d-10        ! SH cutoff length [m]
+- 
++
+ ifcellindex_sh  .false.         ! flag for cell index (SH)
+ 
+ ifbooksh        .false.         ! flag for bookkeeping of SH interaction

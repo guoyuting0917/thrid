@@ -1,0 +1,19 @@
+; This custom NB (nonbonded) interaction parameter file can be freely tweaked.
+; You should also modify rdpara_cstmnb.F90 and cstmnb.F90 so that this 
+; parameter files is properly read and executed by peachgk_md.
+
+; CUSTOM NB parameters for specific part of LJ and Coulomb (real space) 
+; calculation.
+; The order of the potential parameters in the first line is as follows.
+; <index> <rrcut> <rcut> <Ewald_alpha>
+; (alpha parameter should be identical to that in peachgk.ini.)
+; The remaining lines define the target pairs of atom type whose potential
+;  energy is calculated.
+<CUSTOM_NB>
+   1  9.0d-10  12.0d-10  2.9202899d+9
+   2  CK-OB
+   3  CK-HB
+   4  CJ-OB
+   5  CJ-HB
+
+<END>

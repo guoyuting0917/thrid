@@ -1,0 +1,13 @@
+<BOND>
+   1   1   2 CK-CJ
+   2   2   3 CJ-CJ
+   3   3   4 CJ-SJ
+
+<ANGLE>
+   1   1   2   3 CK-CJ-CJ
+   2   2   3   4 CJ-CJ-SJ
+
+<TORSION_RB>
+   1   1   2   3   4 X-CJ-CJ-X  
+
+<END>

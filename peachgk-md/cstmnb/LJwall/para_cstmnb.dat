@@ -1,0 +1,13 @@
+; This custom NB (nonbonded) interaction parameter file can be freely tweaked.
+; You should also modify rdpara_cstmnb.F90 and cstmnb.F90 so that this 
+; parameter file is properly read and executed by peachgk_md.
+
+; CUSTOM NB parameters designed for the potential which is applied to 
+;   the region between two walls.
+; The order of the potential parameters is as follows.
+;<index> <atom type> <zcut_WALL> <zcut_bookWALL>  <nstep_bookWALL> 
+;<E_WALL> <S_WALL> <R_WALL> <dstnc>
+<CUSTOM_NB>
+   1  AR  50.0E-10  55.0E-10  50  1.653e-21  3.4236e-10  2.4920e28  112.19e-10
+
+<END>

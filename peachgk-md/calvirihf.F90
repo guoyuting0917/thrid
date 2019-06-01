@@ -1,0 +1,405 @@
+!*****************************
+!*  calvirihf.f Ver.1.5      *
+!*      for peachgk_md.f     *
+!*            by G.Kikugawa  *
+!*****************************
+! Time-stamp: <2015-05-12 14:04:40 gota>
+
+subroutine calvirihf(i,j,fi,fj,   &
+     &               nbodycoeff,   &
+     &               box,box_inv,   &
+     &               ifhfvol,   &
+     &               nhfregion,hfzpos1,hfzpos2,   &
+     &               hftyp_atm,   &
+     &               molecom,   &
+     &               virihft_atm)
+
+  use md_global
+
+  implicit none
+      
+!
+!    
+!     Calculate contribution of collision term:
+!        
+!     Local volume-based method:
+!       nbodycoeff * rij x  Fi * |rijz(a->b)|/|rijz|
+!       nbodycoeff * rij x -Fj * |rijz(a->b)|/|rijz|
+!         is distributed to i and j particle, respectively
+!
+!     Local surface-based method (MOP):
+!       nbodycoeff *  Fi * {H(zi - zp) - H(zj - zp)}
+!       nbodycoeff * -Fj * {H(zi - zp) - H(zj - zp)}
+!         is distributed to i and j particle, respectively
+!         (H is Heaviside function)
+!
+!     !!!  Caution !!!
+!     This version does not support the z-directional periodic boundary.
+!
+! ARGUMENTS:
+!   INPUT
+  integer,intent(in):: i,j              ! particle number
+!  real(8),intent(in):: rij(:)           ! Ri - Rj
+  real(8),intent(in):: fi(:),fj(:)      ! force to i and j
+  real(8),intent(in):: nbodycoeff  ! n-body coefficient for virial term of heatf
+
+  real(8),intent(in):: box(:)           ! BOX size
+  real(8),intent(in):: box_inv(:)       ! inverse of BOX size
+
+  logical,intent(in):: ifhfvol       ! local volume-based or local surface-based
+
+  integer,intent(in):: nhfregion       ! number of region to calculate heat flux
+  real(8),intent(in):: hfzpos1(:),hfzpos2(:)
+                                        ! z-position of region for heat flux
+
+  integer,intent(in):: hftyp_atm(:)     ! atom- or mole-based heat flux cal. 
+                                        !   for each atom
+
+  real(8),intent(in):: molecom(:,:)     ! center of mass of molecule
+
+!   OUTPUT
+  real(8),intent(out):: virihft_atm(:,:,:,:)
+                                        ! virial tensor of each atom (L-J)
+
+! LOCAL:
+  integer:: n
+
+  integer:: ihfr
+
+  integer:: atomflag                  ! if atom-based calculation
+                                      ! for both (=2), either (=1), or none (=0)
+
+  real(8):: atmcori(3)                ! temporary atom (or COM) coordinate for i
+  real(8):: atmcorj(3)                ! temporary atom (or COM) coordinate for j
+
+  integer:: moleindex
+
+  real(8):: rij_tmp(3)                  ! rij used in this routine
+  real(8):: rijz_abs                    ! = |rijz|
+  real(8):: rijz_abs_inv                ! = 1/|rijz|
+
+  real(8):: riz_p1                      ! = riz - hfzpos1
+  real(8):: rjz_p1                      ! = rjz - hfzpos1
+  real(8):: riz_p2                      ! = riz - hfzpos2
+  real(8):: rjz_p2                      ! = rjz - hfzpos2
+
+  integer:: npcross                     ! number of crossing (0,1,2)
+  logical:: p1cross_flag                ! if cross plane1 
+  logical:: p2cross_flag                ! if cross plane2
+
+!  real(8):: flagment_fact               ! = |rijz(a->b)| / |rijz|
+  real(8):: flagment_fact               ! = |rijz(a->b)|
+
+  real(8):: rij_fi(3)                   ! = rij dyad fi (row)
+  real(8):: rij_fj(3)                   ! = rij dyad -fj (row)
+
+!     +     +     +     +     +     +     +
+
+!---- initialization
+
+!---- set coordinate
+! - set coordinate of atom or COM
+  atomflag = 0
+  if (hftyp_atm(i) == HFTYP_MOLE) then
+     moleindex = irmolept_list(i)
+     atmcori(1:3) = molecom(1:3,moleindex)
+  else
+     atomflag = atomflag + 1
+     atmcori(1:3) = atmcor(1:3,i)
+
+#if !defined(_HF_BULK)
+!    - P.B.C. (only z-dir)
+     if (atmcori(3) < 0.0d0) then
+        atmcori(3) = atmcori(3) + box(3)
+     else if (atmcori(3) >= box(3)) then
+        atmcori(3) = atmcori(3) - box(3)
+     end if
+#endif
+  end if
+
+  if (hftyp_atm(j) == HFTYP_MOLE) then
+     moleindex = irmolept_list(j)
+     atmcorj(1:3) = molecom(1:3,moleindex)
+  else
+     atomflag = atomflag + 1
+     atmcorj(1:3) = atmcor(1:3,j)
+
+#if !defined(_HF_BULK)
+!    - P.B.C. (only z-dir)
+     if (atmcorj(3) < 0.0d0) then
+        atmcorj(3) = atmcorj(3) + box(3)
+     else if (atmcorj(3) >= box(3)) then
+        atmcorj(3) = atmcorj(3) - box(3)
+     end if
+#endif
+  end if
+
+! - set rij
+
+#if defined(_HF_DEBUG)
+  if ((atomflag == 0) .and.   &         ! belong to same molecule (mole-base)
+       &    (irmolept_list(i) == irmolept_list(j))) then
+     write(6,*) '*** heatf debug info ***'
+     write(6,*) 'return: same mole. (',i,',',j,')'
+     return
+  end if
+#else
+  if ((atomflag == 0) .and.   &         ! belong to same molecule (mole-base)
+       &    (irmolept_list(i) == irmolept_list(j))) return
+#endif
+
+#if defined(_HF_ALL_DIR) || defined(_HF_BULK)
+  rij_tmp(1) = atmcori(1) - atmcorj(1)
+  rij_tmp(2) = atmcori(2) - atmcorj(2)
+#endif
+  rij_tmp(3) = atmcori(3) - atmcorj(3)
+
+#if !defined(_HF_BULK)
+  rijz_abs = abs(rij_tmp(3))
+#endif
+
+#if defined(_HF_DEBUG)
+  if (rijz_abs * box_inv(3) >= 0.5d0) then
+     write(6,*) '*** heatf debug info ***'
+     write(6,*) 'return: P.B.C. (',i,',',j,')'
+     return
+  endif
+#endif
+
+#if !defined(_HF_BULK)
+  if (rijz_abs * box_inv(3) >= 0.5d0) return ! rijz exceed half cell
+                              !!! This is not sufficient for considering P.B.C.
+#endif
+
+
+!-------- local volume-based calculation --------
+  IF (ifhfvol) THEN
+
+!    - P.B.C.
+#if defined(_HF_ALL_DIR) || defined(_HF_BULK)
+     rij_tmp(1) = rij_tmp(1)   &
+          &     - box(1) * anint(rij_tmp(1)*box_inv(1))
+     rij_tmp(2) = rij_tmp(2)   &
+          &     - box(2) * anint(rij_tmp(2)*box_inv(2))
+#endif
+#if defined(_HF_BULK)
+     rij_tmp(3) = rij_tmp(3)   &
+          &     - box(3) * anint(rij_tmp(3)*box_inv(3))
+#endif
+
+#if !defined(_HF_BULK)
+     IF (rijz_abs > 1.d-300) THEN
+     rijz_abs_inv = 1.0d0/rijz_abs
+     ELSE
+     rijz_abs_inv = 0.d0
+     ENDIF
+     
+#endif
+
+!    ---- loop of hfregion
+
+     do ihfr = 1, nhfregion
+
+!!! skip for -D_HF_BULK
+#if !defined(_HF_BULK)
+!       - check whether cross the region
+        riz_p1 = atmcori(3) - hfzpos1(ihfr)
+        rjz_p1 = atmcorj(3) - hfzpos1(ihfr)
+        riz_p2 = atmcori(3) - hfzpos2(ihfr)
+        rjz_p2 = atmcorj(3) - hfzpos2(ihfr)
+
+        npcross = 0
+        p1cross_flag = .false.
+        p2cross_flag = .false.
+
+        if (riz_p1*rjz_p1 < 0.0d0) then
+           p1cross_flag = .true.
+           npcross = npcross + 1
+        endif
+
+        if (riz_p2*rjz_p2 < 0.0d0) then
+           p2cross_flag = .true.
+           npcross = npcross + 1
+        endif
+
+!       - if 0 time crossing (out of region or both particles inside the region)
+        if (npcross == 0) then
+            
+           if (riz_p1*riz_p2 > 0.0d0) cycle ! out of region
+
+#if defined(_HF_ALL_DIR)
+           flagment_fact = 1.0d0
+#else
+           flagment_fact = rijz_abs
+#endif
+#if defined(_HF_DEBUG)
+           write(6,*) '*** heatf debug info ***'
+           write(6,*) '0 time cross, pair(',i,',',j,')'
+#endif
+            
+!       - if 1 time crossing (either particle inside the region)
+        else if (npcross == 1) then
+            
+           if (p1cross_flag) then       ! plane 1 crossing
+              if (riz_p1 > 0.0d0) then  ! i inside the region
+#if defined(_HF_ALL_DIR)
+                 flagment_fact = riz_p1 * rijz_abs_inv
+#else
+                 flagment_fact = riz_p1
+#endif
+              else                      ! j inside the region
+#if defined(_HF_ALL_DIR)
+                 flagment_fact = rjz_p1 * rijz_abs_inv
+#else
+                 flagment_fact = rjz_p1
+#endif
+
+              endif
+#if defined(_HF_DEBUG)
+              write(6,*) '*** heatf debug info ***'
+              write(6,*) '1 time cross at plane1, pair(',i,',',j,')'
+              if (flagment_fact <= 0.0d0) then
+                 write(6,*) 'Error: flagment_fact is negative...'
+                 stop
+              end if
+#endif
+
+           else                        ! plane 2 crossing
+              if (riz_p2 < 0.0d0) then ! i inside the region
+#if defined(_HF_ALL_DIR)
+                 flagment_fact = -riz_p2 * rijz_abs_inv
+#else
+                 flagment_fact = -riz_p2
+#endif
+              else                     ! j inside the region
+#if defined(_HF_ALL_DIR)
+                 flagment_fact = -rjz_p2 * rijz_abs_inv
+#else
+                 flagment_fact = -rjz_p2
+#endif
+              endif
+#if defined(_HF_DEBUG)
+              write(6,*) '*** heatf debug info ***'
+              write(6,*) '1 time cross at plane2, pair(',i,',',j,')'
+              if (flagment_fact <= 0.0d0) then
+                 write(6,*) 'Error: flagment_fact is negative...'
+                 stop
+              end if
+#endif
+
+           end if
+
+!       - if 2 times crossing (out of region but intersect the connection line)
+        else
+
+#if defined(_HF_ALL_DIR)
+           flagment_fact = (hfzpos2(ihfr) - hfzpos1(ihfr))   &
+                &        * rijz_abs_inv
+#else
+           flagment_fact = hfzpos2(ihfr) - hfzpos1(ihfr)
+#endif
+
+#if defined(_HF_DEBUG)
+           write(6,*) '*** heatf debug info ***'
+           write(6,*) '2 times cross, pair(',i,',',j,')'
+#endif
+
+        end if
+!!! skip for -D_HF_BULK
+#endif
+
+!       - calculate virial component
+
+#if defined(_HF_ALL_DIR)
+        flagment_fact = flagment_fact * nbodycoeff
+
+        do n=1,3
+           rij_fi(1:3) = rij_tmp(n) * fi(1:3)
+
+           rij_fj(1:3) = rij_tmp(n) * (-fj(1:3))
+
+           virihft_atm(1:3,n,i,ihfr) = virihft_atm(1:3,n,i,ihfr)   &
+                &                    + rij_fi(1:3)*flagment_fact
+
+           virihft_atm(1:3,n,j,ihfr) = virihft_atm(1:3,n,j,ihfr)   &
+                &                    + rij_fj(1:3)*flagment_fact
+        end do
+
+#elif defined(_HF_BULK)
+        flagment_fact = nbodycoeff
+
+        do n=1,3
+           rij_fi(1:3) = rij_tmp(n) * fi(1:3)
+
+           rij_fj(1:3) = rij_tmp(n) * (-fj(1:3))
+
+           virihft_atm(1:3,n,i,ihfr) = virihft_atm(1:3,n,i,ihfr)   &
+                &                    + rij_fi(1:3)*flagment_fact
+
+           virihft_atm(1:3,n,j,ihfr) = virihft_atm(1:3,n,j,ihfr)   &
+                &                    + rij_fj(1:3)*flagment_fact
+        end do
+
+#else
+        if (rij_tmp(3) >= 0.0d0) then  ! |rijz| is taken into account
+           flagment_fact = flagment_fact * nbodycoeff
+        else
+           flagment_fact = -flagment_fact * nbodycoeff
+        end if
+
+        virihft_atm(1:3,3,i,ihfr) = virihft_atm(1:3,3,i,ihfr)   &
+             &                    + fi(1:3)*flagment_fact
+
+        virihft_atm(1:3,3,j,ihfr) = virihft_atm(1:3,3,j,ihfr)   &
+             &                    + (-fj(1:3))*flagment_fact
+#endif
+
+     end do
+
+! -------- local surface-based calculation --------
+  ELSE
+#if defined(_HF_BULK)
+     write(6,*) 'Error: use ifhfvol when using bulk mode (-D_HF_BULK).'
+     stop
+#endif
+
+!    ---- loop of hfregion
+
+     do ihfr = 1, nhfregion
+
+!       - check whether cross the region
+        riz_p1 = atmcori(3) - hfzpos1(ihfr)
+        rjz_p1 = atmcorj(3) - hfzpos1(ihfr)
+
+        if (riz_p1*rjz_p1 < 0.0d0) then ! if cross the surface
+            
+           if (riz_p1 > 0.0d0) then    ! i is positive from the surface
+              flagment_fact = 1.0d0
+           else                        ! j is positive from the surface
+              flagment_fact = -1.0d0
+           endif
+#if defined(_HF_DEBUG)
+           write(6,*) '*** heatf debug info ***'
+           write(6,*) 'cross the plane, pair(',i,',',j,')'
+           write(6,*) 'flagment_fact= ',flagment_fact
+#endif
+
+!          - calculate virial (vector) component
+
+           flagment_fact = flagment_fact * nbodycoeff
+            
+           virihft_atm(1:3,3,i,ihfr) = virihft_atm(1:3,3,i,ihfr)   &
+                &                    + fi(1:3)*flagment_fact
+
+           virihft_atm(1:3,3,j,ihfr) = virihft_atm(1:3,3,j,ihfr)   &
+                &                    + (-fj(1:3))*flagment_fact
+
+        end if
+          
+     end do
+
+  END IF                               ! local surface-based calculation end
+
+!     +     +     +     +     +     +     +
+
+end subroutine calvirihf

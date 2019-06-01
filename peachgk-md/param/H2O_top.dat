@@ -1,0 +1,11 @@
+<BOND>
+   1   1   2 HF-OF
+   2   1   3 HF-HF
+   3   2   3 HF-OF
+
+<ANGLE>
+   1   1   2   3 HF-OF-HF
+
+<TORSION>
+
+<END>

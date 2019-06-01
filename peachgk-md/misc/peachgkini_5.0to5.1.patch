@@ -1,0 +1,34 @@
+*** /home/gota/peachgk_md/peachgk-md-2.135/peachgk.ini	2012-07-10 23:02:10.000000000 +0900
+--- peachgk.ini	2012-07-18 05:56:43.789852500 +0900
+***************
+*** 1,4 ****
+! ### MD control script for peachgk Ver.5.0 '12.07.09 ###
+  
+  #input&output file name
+  iuwtopname      H2O_topOB.dat
+--- 1,4 ----
+! ### MD control script for peachgk Ver.5.1 '12.07.17 ###
+  
+  #input&output file name
+  iuwtopname      H2O_topOB.dat
+***************
+*** 29,34 ****
+--- 29,36 ----
+  # !!! set "localfix" to fix the atom position (iflocalfix must be ON)
+  # !!! set "localfixz" to fix the atom z position only (iflocalfixz must be ON)
+  #          Followed by index of atom to fix, and z position to fix.
++ # !!! set "localfixzg" to fix the COM of molecule z position only
++ #          (iflocalfixzg must be ON) Followed by z position to fix.
+  # !!! set "localheat" and the following real value to keep the temperature
+  #         to the target value (iflocalheat must be ON)
+  # !!! set "posres" to impose position restraint (mole.) (ifposres must be ON)
+***************
+*** 203,208 ****
+--- 205,211 ----
+                          ! make sure that mole. do not have any constraint bonding
+  iflocalfix      .false. ! fix atoms flag
+  iflocalfixz     .false. ! flag to fix atoms at a z coordinate
++ iflocalfixzg    .false. ! flag to fix COM of molecules at a z coordinate
+  ifposres        .false. ! position restraint flag
+  ifpotbias       .false. ! bias potential flag (you need potbias.ini)
+  

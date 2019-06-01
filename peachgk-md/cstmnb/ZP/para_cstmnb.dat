@@ -1,0 +1,18 @@
+; This custom NB (nonbonded) interaction parameter file can be freely tweaked.
+; You should also modify rdpara_cstmnb.F90 and cstmnb.F90 so that this 
+; parameter files is properly read and executed by peachgk_md.
+
+; CUSTOM NB parameters for ZP potential (Zhu and Philpott, J.C.P., 1994)
+; In 2nd column, an atom type of metal should be prior to that of water.
+; The order of the potential parameters is as follows.
+; <index> <atom types> <rcut_ZPcond> <rcut_bookZPcond> <nstep_bookZPcond>
+;         <surface pos 1> <surface pos 2> <rcut_ZPaniso> <rcut_bookZPaniso>
+;         <nstep_bookZPaniso> <alpha_ZPaniso> <rcut_ZPiso> <rcut_bookZPiso>
+;         <nstep_bookZPiso> <c_ZPiso> <epsilon_ZP> <sigma_ZP> <ifrenew_msurf>
+; If <ifrenew_msurf> is .true., you must hard-code some relevant parameters
+; in cstmnb.F90.
+<CUSTOM_NB>
+   1 CE-OB  20.0E-10  22.0E-10  50  30.00E-10  140.00E-10  14.0E-10  16.0E-10  50  0.82E+0  10.00E-10  12.0E-10  50  1.28E+0  4.646E-21   2.618E-10  .false.
+   2 CE-HB  20.0E-10  22.0E-10  50  30.00E-10  140.00E-10  14.0E-10  16.0E-10  50  0.82E+0  10.00E-10  12.0E-10  50  0.50E+0  2.373E-21   2.550E-10  .false.
+
+<END>

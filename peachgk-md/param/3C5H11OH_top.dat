@@ -1,0 +1,94 @@
+<BOND>
+   1   1   2 CT-CT
+   2   1   6 CT-HC
+   3   1   7 CT-HC
+   4   1   8 CT-HC
+   5   2   3 CT-CH
+   6   2   9 CT-HC
+   7   2  10 CT-HC
+   8   3   4 CT-CH
+   9   3  11 CH-H1
+  10   3  17 CH-OH
+  11   4   5 CT-CT
+  12   4  12 CT-HC
+  13   4  13 CT-HC
+  14   5  14 CT-HC
+  15   5  15 CT-HC
+  16   5  16 CT-HC
+  17  17  18 HO-OH
+
+<ANGLE>
+   1   1   2   3 CH-CT-CT
+   2   1   2   9 CT-CT-HC
+   3   1   2  10 CT-CT-HC
+   4   2   1   6 CT-CT-HC
+   5   2   1   7 CT-CT-HC
+   6   2   1   8 CT-CT-HC
+   7   2   3   4 CT-CH-CT
+   8   2   3  11 CT-CH-H1
+   9   2   3  17 CT-CH-OH
+  10   3   2   9 CH-CT-HC
+  11   3   2  10 CH-CT-HC
+  12   3   4   5 CH-CT-CT
+  13   3   4  12 CH-CT-HC
+  14   3   4  13 CH-CT-HC
+  15   3  17  18 CH-OH-HO
+  16   4   3  11 CT-CH-H1
+  17   4   3  17 CT-CH-OH
+  18   4   5  14 CT-CT-HC
+  19   4   5  15 CT-CT-HC
+  20   4   5  16 CT-CT-HC
+  21   5   4  12 CT-CT-HC
+  22   5   4  13 CT-CT-HC
+  23   6   1   7 HC-CT-HC
+  24   6   1   8 HC-CT-HC
+  25   7   1   8 HC-CT-HC
+  26   9   2  10 HC-CT-HC
+  27  11   3  17 H1-CH-OH
+  28  12   4  13 HC-CT-HC
+  29  14   5  15 HC-CT-HC
+  30  14   5  16 HC-CT-HC
+  31  15   5  16 HC-CT-HC
+
+<TORSION>
+   1   1   2   3   4 X-CH-CT-X  
+   2   1   2   3  11 X-CH-CT-X  
+   3   1   2   3  17 X-CH-CT-X  
+   4   2   3   4   5 X-CH-CT-X  
+   5   2   3   4  12 X-CH-CT-X  
+   6   2   3   4  13 X-CH-CT-X  
+   7   2   3  17  18 X-CH-OH-X  
+   8   3   2   1   6 X-CT-CT-X  
+   9   3   2   1   7 X-CT-CT-X  
+  10   3   2   1   8 X-CT-CT-X  
+  11   3   4   5  14 X-CT-CT-X  
+  12   3   4   5  15 X-CT-CT-X  
+  13   3   4   5  16 X-CT-CT-X  
+  14   4   3   2   9 X-CH-CT-X  
+  15   4   3   2  10 X-CH-CT-X  
+  16   4   3  17  18 X-CH-OH-X  
+  17   5   4   3  11 X-CH-CT-X  
+  18   5   4   3  17 X-CH-CT-X  
+  19   6   1   2   9 X-CT-CT-X  
+  20   6   1   2  10 X-CT-CT-X  
+  21   7   1   2   9 X-CT-CT-X  
+  22   7   1   2  10 X-CT-CT-X  
+  23   8   1   2   9 X-CT-CT-X  
+  24   8   1   2  10 X-CT-CT-X  
+  25   9   2   3  11 X-CH-CT-X  
+  26   9   2   3  17 X-CH-CT-X  
+  27  10   2   3  11 X-CH-CT-X  
+  28  10   2   3  17 X-CH-CT-X  
+  29  11   3   4  12 X-CH-CT-X  
+  30  11   3   4  13 X-CH-CT-X  
+  31  11   3  17  18 X-CH-OH-X  
+  32  12   4   3  17 X-CH-CT-X  
+  33  12   4   5  14 X-CT-CT-X  
+  34  12   4   5  15 X-CT-CT-X  
+  35  12   4   5  16 X-CT-CT-X  
+  36  13   4   3  17 X-CH-CT-X  
+  37  13   4   5  14 X-CT-CT-X  
+  38  13   4   5  15 X-CT-CT-X  
+  39  13   4   5  16 X-CT-CT-X  
+
+<END>

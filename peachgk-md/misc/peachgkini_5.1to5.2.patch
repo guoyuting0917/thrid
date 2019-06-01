@@ -1,0 +1,127 @@
+--- /home/gota/peachgk_md/peachgk-md-2.137_rev1/peachgk.ini	2013-07-30 18:16:21.511422400 +0900
++++ peachgk.ini	2013-12-19 17:04:37.208100100 +0900
+@@ -1,23 +1,24 @@
+-### MD control script for peachgk Ver.5.1 '12.07.17 ###
++### MD control script for peachgk Ver.5.2 '13.12.19 ###
+ 
+ #input&output file name
+-iuwtopname      H2O_topOB.dat
+-iuparavdwname   para_vdw_s.dat
+-iuparabondname  para_bond.dat
+-iuparaconstname para_const.dat
+-iuaddtopname    add_top.dat
+-iuposresname    sta_peachgk-2.0.dat
+-
+-iostarecname    sta_peachgk-2.0.dat
+-
+-ousumname       out_sum.dat
+-ouenename       out_ene.dat
+-ouposname       out_pos.dat
+-ouvelname       out_vel.dat
+-outhename       out_the.dat
+-oubarname       out_bar.dat
+-ouprename       out_pre.dat
+-oupdbname       out_pdb.pdb
++iuwtopname       H2O_topOB.dat
++iuparavdwname    para_vdw_s.dat
++iuparabondname   para_bond.dat
++iuparaconstname  para_const.dat
++iuparacstmnbname para_cstmnb.dat
++iuaddtopname     add_top.dat
++iuposresname     sta_peachgk-2.0.dat
++
++iostarecname     sta_peachgk-2.0.dat
++
++ousumname        out_sum.dat
++ouenename        out_ene.dat
++ouposname        out_pos.dat
++ouvelname        out_vel.dat
++outhename        out_the.dat
++oubarname        out_bar.dat
++ouprename        out_pre.dat
++oupdbname        out_pdb.pdb
+ 
+ #number of particle
+ 
+@@ -37,6 +38,10 @@
+ # !!! set "posresatm" to impose position restraint (atom) (ifposres must be ON)
+ #         Following the "posresatm", number of atoms for restraint, 
+ #         indexes of atom for restraint are aligned.
++#         Above posres schemes can be used with specifying the constraint
++#         direction like posresx or posresatmy.
++#         Do not use "posres" or "posresatm" together with direction-specifying
++#         options like "posresx". "posres" means contraint for all directions.
+ # !!! set "potbias" to impose the bias potential (mole.) (ifpotbias must be ON)
+ # !!! set "potbiasatm" to impose the bias potential (atom) (ifpotbias must be ON)
+ #         Following the "potbiasatm", number of atoms exerted by the potential,
+@@ -52,6 +57,7 @@
+ npolymoletyp      2       5       18 C5H11OH_cor.dat C5H11OH_top.dat  .true.
+ #npolymoletyp      3       5       18 C5H11OH_cor.dat C5H11OH_top.dat  .true.  setcharge  pdbresname PENO
+ #npolymoletyp      4       5       18 C5H11OH_cor.dat C5H11OH_top.dat  .true. localheat 300.0  posres  pdbresname PENO
++#npolymoletyp      4       5       18 C5H11OH_cor.dat C5H11OH_top.dat  .true. localheat 300.0  posresx posresz  pdbresname PENO
+ #npolymoletyp      5       5       56 C18H37S_cor.dat C18H37S_cor.dat  .true.  posresatm 1 1  pdbresname ODTI
+ #npolymoletyp      6       5       56 C18H37S_cor.dat C18H37S_cor.dat  .true.  localfixz 2 20.0e-10 pdbresname ODTI
+ 
+@@ -110,7 +116,7 @@
+ nstep_stage     5       10000
+ mdcont_stage    5       md_nve
+ 
+-nstep_maxwell   1001
++nstep_maxwell   -1
+ nstep_expand    -1
+ 
+ #cell dimensions (cel is prior to ratio)
+@@ -152,6 +158,7 @@
+ #   then parallel computations become faster.
+ mts_bond        short
+ mts_angl        short
++mts_anglub      short
+ mts_tors        short
+ mts_torsrb      short
+ mts_torsim      short
+@@ -160,11 +167,12 @@
+ mts_ewk         long
+ mts_vdw14       long
+ mts_elc14       long
+-mts_mor         long
++#mts_mor         long
+ #mts_sh          long
+ #mts_rfh         short
+ #mts_dou         long
+-#mts_cnpvw       long
++#mts_cstmnb      long
++mts_cnpvw       long
+ mts_posres      short
+ mts_potbias     long
+ 
+@@ -269,7 +277,7 @@
+ 
+ randseed        555             ! random seed for createcor etc.
+ 
+-compfact        0.33d0          ! compact factor using at poly arrange(<1.0)
++compfact        1.00d0          ! compact factor using at poly arrange(<1.0)
+ 
+ eps_rattle      1.0e-7          ! tolerance (relative difference)
+                                 ! for bond length constraint by RATTLE
+@@ -283,9 +291,9 @@
+ rcutmor         12.0d-10        ! Morse cutoff length [m]
+                                 ! if 0.0d0 is chosen, rcutmor is L/2
+ 
+-ifcellindex_mor .true.          ! flag for cell index (morse)
++ifcellindex_mor .false.         ! flag for cell index (morse)
+ 
+-ifbookmor       .true.          ! flag for bookkeeping of Morse interaction
++ifbookmor       .false.         ! flag for bookkeeping of Morse interaction
+ rcut_bookmor    14.0d-10        ! cut off radius of bookkeeping[m] of Morse
+ nstep_bookmor   50              ! bookkeeping interval of Morse interaction
+ 
+@@ -352,4 +360,9 @@
+ rcut_bookrpvw     14.0d-10      ! cut off radius of bookkeeping[m] of RP-VW
+ nstep_bookrpvw   50             ! bookkeeping interval of RP-VW interaction
+ 
++#CUSTOM NB interaction flags
++ifcstmnb           .false.      ! flag if using custom NB interaction
++ifcellindex_cstmnb .false.      ! flag for cell index (custom NB)
++ifbookcstmnb       .false.      ! flag for bookkeeping of custom NB interaction
++
+ END

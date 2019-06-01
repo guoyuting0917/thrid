@@ -1,0 +1,25 @@
+--- /home/gota/peachgk_md/peachgk-md-2.138/peachgk.ini	2014-04-01 14:37:03.577901300 +0900
++++ peachgk.ini	2014-06-23 10:36:30.050547400 +0900
+@@ -1,4 +1,4 @@
+-### MD control script for peachgk Ver.5.2 '13.12.19 ###
++### MD control script for peachgk Ver.5.3 '14.06.20 ###
+ 
+ #input&output file name
+ iuwtopname       H2O_topOB.dat
+@@ -18,6 +18,7 @@
+ outhename        out_the.dat
+ oubarname        out_bar.dat
+ ouprename        out_pre.dat
++outhcname        out_thc.dat
+ oupdbname        out_pdb.pdb
+ 
+ #number of particle
+@@ -211,6 +212,8 @@
+ iftcratom       .false. ! region temp. control based on atom (T) or mole. (F)
+                         ! if use atom-base control, 
+                         ! make sure that mole. do not have any constraint bonding
++ifoutthc        .false. ! flag for outputting thermal control file
++
+ iflocalfix      .false. ! fix atoms flag
+ iflocalfixz     .false. ! flag to fix atoms at a z coordinate
+ iflocalfixzg    .false. ! flag to fix COM of molecules at a z coordinate

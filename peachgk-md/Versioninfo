@@ -1,0 +1,99 @@
+### version up history of peachgk_md ###
+
+V1.6 -- major version up
+ The main renewal point is
+	"To calculate the Pressure of cell"
+--- failed...
+V1.7 -- major version up
+ The renewal point is
+	"To incorpolate the RATTLE algorithm"
+  V1.73 -- minor version up
+        "To calculate the pressure of the cell by Hunenberger (J.C.P., 2002)"
+  V1.74 -- minor version up
+        "To calculate the atomic pressure, and introduce new NVE-RATTLE-RESPA"
+V1.8 -- major version up
+	"To include the Nose-Hoover chain (NVT) algorithm"
+V1.9 -- major version up
+	"To include the Nose-Hoover chain - Andersen (Hoover type)
+         Martyna-Tobias-Klein (NPT) algorithm (J.C.P., 1994)"
+  V1.90 --
+        "including MTK algorithm"
+  V1.91 -- minor version up
+        "including molecular pressure control (NPT) in MTK algorithm"
+  V1.92 -- minor version up
+        "introducing Long-range correction of L-J molecules"
+  V1.95 -- minor version up
+        "introducing the calculation of potential field"
+V2.0 -- major version up
+	"To include the SPME method & parallelize the MD code"
+  V2.00 --
+        "improve Ewald method appropriate for rectangular cell and
+	 modify the calculation of potential field"
+        "introduce the calculation routine of surface level set function"
+  V2.02 --
+        "introduce SPME(Smooth Particle Mesh Ewald) method"
+  V2.02 --
+        "parallelize the code"
+  V2.04 --
+        "introduce the net-charge system computation"
+  V2.05 --
+        "treat the multiple polymer type"
+        "introduce various types of force field"
+V2.1 -- major version up
+	"To include the MDGRAPE3 library"
+  V2.10 --
+        "include the MDGRAPE3 library"
+        "introduce the routine to calculate the heat flux"
+        "introduce FFTW library for SPME method"
+        "introduce cell-index method"
+  V2.11 --
+        "introduce spline interpolation method for real space sum"
+        "introduce SH interaction potential for water - Pt surface"
+        "introduce SPME MPI parallerization"
+        "introduce MDGRAPE m library"
+        "introduce position restraint"
+        "introduce parallel computation in heat flux routine"
+  V2.12 --
+	"finish support of MDGRAPE-3 calculations... (use Ver.2.119)"
+        "introduce rigorous heat flux calculation (local volume based)"
+        "introduce Fennell method (J.C.P., 2006)"
+        "introduce rigorous heat flux calculation (local surface based)"
+        "introduce constant heat flux control (Jund and Jullien, P.R.B, 1999)"
+        "introduce Rustad-Felmy-Hay potential for iron oxide ionic
+         potential function 
+         (Rustad, Felmy, and Hay, Geochem. Cosmochem. Acta, 1996)"
+        "introduce bias potential (for PMF calculations)"
+        "introduce Dou potential for Au-water interaction"
+  V2.13 --
+	"change programming language from F77 to F90/F95 compatible form
+         implemented by Naofumi Yamamoto and Gota Kikugawa @IFS, Tohoku Univ."
+        "include SFMT (SIMD-oriented Fast Mersenne Twister) for random number
+         generator. See,
+         http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/SFMT/index-jp.html"
+        "introduce z-coordinate restraint of specific atom by RATTLE method"
+        "introduce the routine to calculate the local pressure"
+        "introduce the COM-based bias potential"
+        "introduce the normal pressure control by virtual wall
+         (Lupkowski and Swol, J. Chem. Phys., 1990)"
+        "introduce energy minimization (EM) by steepest descent (SD) method"
+        "allow to input (or overwrite) additional topology informations"
+        "introduce the COM-based restraint of z coordinate by RATTLE method"
+        "Single precision output for out_pos.dat and out_vel.dat"
+        "allow to modify (or overwrite) mass and charge of atoms
+        "introduce Urey-Bradley potential and ZP potential (Zhu and Philpott,
+         J. Chem. Phys., 1994)"
+        "introduce Matsui potential for metal oxide substrate (Matsui, M.
+         Miner. Mag., Vol. 58A, pp. 571-572, (1994).)"
+        "support outputting imposed/subtracted energy to/from temperature
+         control region"
+  V2.14 --
+        "support limit of maximum displacement of particle in a single step"
+        "separate the real space evaluation of Ewald method from ewardr
+         procedure (use -D_HF_SKIP_EWALDR)"
+        "introduce the algorithm which force to fix atomic velocities for
+         a specific molecular type"
+        "introduce Langevin thermostat in a local region"
+        "support Stilinger-Weber potential (Stillinger, F.H. and Weber, T.A.,
+         Phys. Rev. B, 31, pp. 5262-5271, (1985)."
+        "support heat flux measurement in a whole simulation system (bulk mode)
+         (use -D_HF_BULK)"

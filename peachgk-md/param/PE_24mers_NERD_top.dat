@@ -1,0 +1,151 @@
+<BOND>
+   1   1   2 CU-CV
+   2   2   3 CU-CU
+   3   3   4 CU-CU
+   4   4   5 CU-CU
+   5   5   6 CU-CU
+   6   6   7 CU-CU
+   7   7   8 CU-CU
+   8   8   9 CU-CU
+   9   9  10 CU-CU
+  10  10  11 CU-CU
+  11  11  12 CU-CU
+  12  12  13 CU-CU
+  13  13  14 CU-CU
+  14  14  15 CU-CU
+  15  15  16 CU-CU
+  16  16  17 CU-CU
+  17  17  18 CU-CU
+  18  18  19 CU-CU
+  19  19  20 CU-CU
+  20  20  21 CU-CU
+  21  21  22 CU-CU
+  22  22  23 CU-CU
+  23  23  24 CU-CU
+  24  24  25 CU-CU
+  25  25  26 CU-CU
+  26  26  27 CU-CU
+  27  27  28 CU-CU
+  28  28  29 CU-CU
+  29  29  30 CU-CU
+  30  30  31 CU-CU
+  31  31  32 CU-CU
+  32  32  33 CU-CU
+  33  33  34 CU-CU
+  34  34  35 CU-CU
+  35  35  36 CU-CU
+  36  36  37 CU-CU
+  37  37  38 CU-CU
+  38  38  39 CU-CU
+  39  39  40 CU-CU
+  40  40  41 CU-CU
+  41  41  42 CU-CU
+  42  42  43 CU-CU
+  43  43  44 CU-CU
+  44  44  45 CU-CU
+  45  45  46 CU-CU
+  46  46  47 CU-CU
+  47  47  48 CU-CU
+  48  48  49 CU-CU
+  49  49  50 CU-CV
+
+<ANGLE>
+   1   1   2   3 CV-CU-CU
+   2   2   3   4 CU-CU-CU
+   3   3   4   5 CU-CU-CU
+   4   4   5   6 CU-CU-CU
+   5   5   6   7 CU-CU-CU
+   6   6   7   8 CU-CU-CU
+   7   7   8   9 CU-CU-CU
+   8   8   9  10 CU-CU-CU
+   9   9  10  11 CU-CU-CU
+  10  10  11  12 CU-CU-CU
+  11  11  12  13 CU-CU-CU
+  12  12  13  14 CU-CU-CU
+  13  13  14  15 CU-CU-CU
+  14  14  15  16 CU-CU-CU
+  15  15  16  17 CU-CU-CU
+  16  16  17  18 CU-CU-CU
+  17  17  18  19 CU-CU-CU
+  18  18  19  20 CU-CU-CU
+  19  19  20  21 CU-CU-CU
+  20  20  21  22 CU-CU-CU
+  21  21  22  23 CU-CU-CU
+  22  22  23  24 CU-CU-CU
+  23  23  24  25 CU-CU-CU
+  24  24  25  26 CU-CU-CU
+  25  25  26  27 CU-CU-CU
+  26  26  27  28 CU-CU-CU
+  27  27  28  29 CU-CU-CU
+  28  28  29  30 CU-CU-CU
+  29  29  30  31 CU-CU-CU
+  30  30  31  32 CU-CU-CU
+  31  31  32  33 CU-CU-CU
+  32  32  33  34 CU-CU-CU
+  33  33  34  35 CU-CU-CU
+  34  34  35  36 CU-CU-CU
+  35  35  36  37 CU-CU-CU
+  36  36  37  38 CU-CU-CU
+  37  37  38  39 CU-CU-CU
+  38  38  39  40 CU-CU-CU
+  39  39  40  41 CU-CU-CU
+  40  40  41  42 CU-CU-CU
+  41  41  42  43 CU-CU-CU
+  42  42  43  44 CU-CU-CU
+  43  43  44  45 CU-CU-CU
+  44  44  45  46 CU-CU-CU
+  45  45  46  47 CU-CU-CU
+  46  46  47  48 CU-CU-CU
+  47  47  48  49 CU-CU-CU
+  48  48  49  50 CV-CU-CU
+
+<TORSION_RB>
+   1   1   2   3   4 X-CU-CU-X  
+   2   2   3   4   5 X-CU-CU-X  
+   3   3   4   5   6 X-CU-CU-X  
+   4   4   5   6   7 X-CU-CU-X  
+   5   5   6   7   8 X-CU-CU-X  
+   6   6   7   8   9 X-CU-CU-X  
+   7   7   8   9  10 X-CU-CU-X  
+   8   8   9  10  11 X-CU-CU-X  
+   9   9  10  11  12 X-CU-CU-X  
+  10  10  11  12  13 X-CU-CU-X  
+  11  11  12  13  14 X-CU-CU-X  
+  12  12  13  14  15 X-CU-CU-X  
+  13  13  14  15  16 X-CU-CU-X  
+  14  14  15  16  17 X-CU-CU-X  
+  15  15  16  17  18 X-CU-CU-X  
+  16  16  17  18  19 X-CU-CU-X  
+  17  17  18  19  20 X-CU-CU-X  
+  18  18  19  20  21 X-CU-CU-X  
+  19  19  20  21  22 X-CU-CU-X  
+  20  20  21  22  23 X-CU-CU-X  
+  21  21  22  23  24 X-CU-CU-X  
+  22  22  23  24  25 X-CU-CU-X  
+  23  23  24  25  26 X-CU-CU-X  
+  24  24  25  26  27 X-CU-CU-X  
+  25  25  26  27  28 X-CU-CU-X  
+  26  26  27  28  29 X-CU-CU-X  
+  27  27  28  29  30 X-CU-CU-X  
+  28  28  29  30  31 X-CU-CU-X  
+  29  29  30  31  32 X-CU-CU-X  
+  30  30  31  32  33 X-CU-CU-X  
+  31  31  32  33  34 X-CU-CU-X  
+  32  32  33  34  35 X-CU-CU-X  
+  33  33  34  35  36 X-CU-CU-X  
+  34  34  35  36  37 X-CU-CU-X  
+  35  35  36  37  38 X-CU-CU-X  
+  36  36  37  38  39 X-CU-CU-X  
+  37  37  38  39  40 X-CU-CU-X  
+  38  38  39  40  41 X-CU-CU-X  
+  39  39  40  41  42 X-CU-CU-X  
+  40  40  41  42  43 X-CU-CU-X  
+  41  41  42  43  44 X-CU-CU-X  
+  42  42  43  44  45 X-CU-CU-X  
+  43  43  44  45  46 X-CU-CU-X  
+  44  44  45  46  47 X-CU-CU-X  
+  45  45  46  47  48 X-CU-CU-X  
+  46  46  47  48  49 X-CU-CU-X  
+  47  47  48  49  50 X-CU-CU-X  
+
+<END>

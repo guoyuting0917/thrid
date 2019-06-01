@@ -1,0 +1,47 @@
+; This custom NB (nonbonded) interaction parameter file can be freely tweaked.
+; You should also modify rdpara_cstmnb.F90 and cstmnb.F90 so that this 
+; parameter file is properly read and executed by peachgk_md.
+;
+; CUSTOM NB parameters for Stillinger-Weber potential.
+; (Stillinger and Weber, Phys. Rev. B, 31, 5262 (1985).)
+; The order of the potential parameters is as follows.
+; (unit -:dimensionless)
+;<CUSTOM_NB>
+; [index] [cstmnbtype]
+;<COMMON_2&3>
+; [index] [rcut_bookSW(-)] [nstep_bookSW] 
+;<2-body>
+; [index] [atom combination of 2 types] 
+; [rcut_SW(-)] [A_SW(-)] [B_SW(-)]
+; [p_SW(-)] [q_SW(-)] [epsilon_SW(J)] [sigma2_SW(m)]
+;<3-body>
+; [index] [atom combination of 3 types]
+; [lambda_SW(-)] [gammma_SW(-)] [theta0_SW(deg.)] [sigma3_SW(m)]
+
+<CUSTOM_NB>
+   1  SW
+   2  GE
+
+<COMMON_2&3>
+   1  1.84E+00  10000
+
+<2-BODY>
+   1  SW-SW  1.80E+00  7.049556277E+00  0.60222245584E+00  4  0  3.4739836E-19  2.0951E-10  ; Diamond
+   2  GE-GE  1.80E+00  7.049556277E+00  0.60222245584E+00  4  0  3.0922074E-19  2.1810E-10
+
+#   1  SW-SW  1.80E+00  7.049556277E+00  0.60222245584E+00  4  0  2.6409157E-19  2.0951E-10  ; amorphous Si
+
+<3-BODY>
+   1  SW-SW-SW  21.0E+00  1.20E+00  109.4712E+00  2.0951E-10  ; Diamond
+   2  GE-GE-GE  31.0E+00  1.20E+00  109.4712E+00  2.1810E-10
+
+#   1  SW-SW-SW  31.5E+00  1.20E+00  109.4712E+00  2.0951E-10  ; amorphous Si
+
+<END>
+
+# 1 eV = 1.602176565E-19 J
+
+# [1] Phys. Rev. B, 31, 5262 (1985): diamond Si
+# [2] Phys. Rev. B, 34, 6987 (1986): amorphous Ge
+#
+# [1] J. Non-Crys. Sol., 282, 248 (2001) ;amorphous Si

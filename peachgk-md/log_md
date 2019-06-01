@@ -1,0 +1,169 @@
+  process           0  starts.
+ - PEACHGK_MD starts. Ver.2.142 -
+ -------------------------------------------------------
+   Molecular Dynamics Program
+     providing Enhanced Approach to CHallenging problems
+     in General Kinds of research field
+ -------------------------------------------------------
+ 
+  process           1  starts.
+  process           2  starts.
+  process           3  starts.
+  process           4  starts.
+  process           5  starts.
+  process           6  starts.
+  process           7  starts.
+ Dynamically allocate memory for non-bond lists at process:            3
+ Dynamically allocate memory for non-bond lists at process:            4
+ Dynamically allocate memory for non-bond lists at process:            5
+ Dynamically allocate memory for non-bond lists at process:            6
+ Dynamically allocate memory for non-bond lists at process:            7
+ Dynamically allocate memory for non-bond lists at process:            0
+ Dynamically allocate memory for non-bond lists at process:            1
+ Dynamically allocate memory for non-bond lists at process:            2
+ Warning: cell length is too short to execute
+          cell-index method (vdw & elc)
+          force to use normal book-keeping
+ Warning: cell length is too short to execute
+          cell-index method (morse)
+          force to use normal book-keeping
+ Read atmcor&vel from state_file
+old xcel=   0.385949999999999975E-08
+old ycel=   0.385830000000000021E-08
+old zcel=   0.130800000000000003E-07
+ Last MD maxnstep:         1000
+  process           2  end of preparation
+  process           1  end of preparation
+  process           6  end of preparation
+  process           3  end of preparation
+  process           4  end of preparation
+  process           5  end of preparation
+  process           0  end of preparation
+  process           7  end of preparation
+
+   vdW and Coulomb nonbonded pairs updated:            1088071
+
+   Morse bonded pairs updated:            1046129
+
+   SH(O) nonbonded pairs updated:               3583
+
+   SH(H) nonbonded pairs updated:               3583
+
+   RFH(FO) nonbonded pairs updated:                  0
+
+   RFH(OO) nonbonded pairs updated:                  0
+
+   RFH(OH) nonbonded pairs updated:                  0
+
+   DOU(O) nonbonded pairs updated:                  0
+
+   DOU(H) nonbonded pairs updated:                  0
+
+   RP-VW interaction pairs updated:               3583
+         1 -0.29700E-14 -0.29700E-14 -0.29937E-14  0.23733E-16  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
+               0.00     0.00   162.98   324.00   304.67   114.64     0.00  3093.90  3180.27   356.66
+
+   vdW and Coulomb nonbonded pairs updated:            1085054
+
+   Morse bonded pairs updated:            1042750
+
+   vdW and Coulomb nonbonded pairs updated:            1082607
+
+   Morse bonded pairs updated:            1039420
+       101 -0.29720E-14 -0.29720E-14 -0.30442E-14  0.72131E-16  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
+               0.00     0.00   260.76  1176.85  1157.54   219.74     0.00  3139.94  2586.12  1084.02
+
+   vdW and Coulomb nonbonded pairs updated:            1080948
+
+   Morse bonded pairs updated:            1036704
+
+   vdW and Coulomb nonbonded pairs updated:            1082711
+
+   Morse bonded pairs updated:            1037232
+       201 -0.29740E-14 -0.29740E-14 -0.30734E-14  0.99377E-16  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
+               0.00     0.00   196.36  1662.01  1638.64   138.15     0.00  3770.11  3372.42  1493.47
+
+   vdW and Coulomb nonbonded pairs updated:            1085291
+
+   Morse bonded pairs updated:            1038456
+
+   vdW and Coulomb nonbonded pairs updated:            1090320
+
+   Morse bonded pairs updated:            1042355
+       301 -0.29756E-14 -0.29756E-14 -0.30668E-14  0.91211E-16  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
+               0.00     0.00   346.94  1445.24  1413.50   297.27     0.00  5472.12  4962.52  1370.75
+
+   vdW and Coulomb nonbonded pairs updated:            1087387
+
+   Morse bonded pairs updated:            1038401
+
+   vdW and Coulomb nonbonded pairs updated:            1086650
+
+   Morse bonded pairs updated:            1036870
+       401 -0.29790E-14 -0.29790E-14 -0.30384E-14  0.59475E-16  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
+               0.00     0.00   202.54   898.70   853.06   166.22     0.00  5730.33  4820.45   893.82
+
+   vdW and Coulomb nonbonded pairs updated:            1088906
+
+   Morse bonded pairs updated:            1038451
+
+   vdW and Coulomb nonbonded pairs updated:            1089384
+
+   Morse bonded pairs updated:            1038432
+       501 -0.29791E-14 -0.29791E-14 -0.30133E-14  0.34153E-16  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
+               0.00     0.00   147.06   476.97   439.37   101.16     0.00  4736.26  4343.43   513.26
+
+   vdW and Coulomb nonbonded pairs updated:            1090367
+
+   Morse bonded pairs updated:            1039175
+
+   vdW and Coulomb nonbonded pairs updated:            1091223
+
+   Morse bonded pairs updated:            1039895
+       601 -0.29794E-14 -0.29794E-14 -0.30032E-14  0.23814E-16  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
+               0.00     0.00   158.37   324.27   293.72   116.88     0.00  3262.95  4178.21   357.89
+
+   vdW and Coulomb nonbonded pairs updated:            1090994
+
+   Morse bonded pairs updated:            1039744
+
+   vdW and Coulomb nonbonded pairs updated:            1090114
+
+   Morse bonded pairs updated:            1039131
+       701 -0.29795E-14 -0.29795E-14 -0.30077E-14  0.28261E-16  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
+               0.00     0.00   150.18   442.76   389.84   114.58     0.00  2400.45  2608.44   424.72
+
+   vdW and Coulomb nonbonded pairs updated:            1088822
+
+   Morse bonded pairs updated:            1038161
+
+   vdW and Coulomb nonbonded pairs updated:            1086977
+
+   Morse bonded pairs updated:            1036786
+       801 -0.29805E-14 -0.29805E-14 -0.30222E-14  0.41722E-16  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
+               0.00     0.00   236.34   687.40   653.68   194.68     0.00  1475.54  1762.22   627.01
+
+   vdW and Coulomb nonbonded pairs updated:            1084779
+
+   Morse bonded pairs updated:            1035172
+
+   vdW and Coulomb nonbonded pairs updated:            1084739
+
+   Morse bonded pairs updated:            1035835
+       901 -0.29826E-14 -0.29826E-14 -0.30415E-14  0.58927E-16  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
+               0.00     0.00   244.90  1005.66   977.09   193.47     0.00  1094.52   820.36   885.58
+
+   vdW and Coulomb nonbonded pairs updated:            1086228
+
+   Morse bonded pairs updated:            1038034
+
+   vdW and Coulomb nonbonded pairs updated:            1085355
+
+   Morse bonded pairs updated:            1038051
+ Write atmcor&vel to state_file
+ Write atmcor&vel to state_file
+ program is done
+
+real	0m16.274s
+user	1m57.209s
+sys	0m2.528s

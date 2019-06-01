@@ -1,0 +1,328 @@
+<BOND>
+   1   1   2 CO-CO
+   2   1   4 CO-CO
+   3   1  20 CO-HP
+   4   1  21 CO-HP
+   5   2   3 CO-CO
+   6   2  22 CO-HP
+   7   2  23 CO-HP
+   8   3   5 CO-CO
+   9   3  24 CO-HP
+  10   3  25 CO-HP
+  11   4   6 CO-CO
+  12   4  26 CO-HP
+  13   4  27 CO-HP
+  14   5   7 CO-CO
+  15   5  28 CO-HP
+  16   5  29 CO-HP
+  17   6   8 CO-CO
+  18   6  30 CO-HP
+  19   6  31 CO-HP
+  20   7   9 CO-CO
+  21   7  32 CO-HP
+  22   7  33 CO-HP
+  23   8  10 CO-CO
+  24   8  34 CO-HP
+  25   8  35 CO-HP
+  26   9  11 CO-CO
+  27   9  36 CO-HP
+  28   9  37 CO-HP
+  29  10  12 CO-CO
+  30  10  38 CO-HP
+  31  10  39 CO-HP
+  32  11  13 CO-CO
+  33  11  40 CO-HP
+  34  11  41 CO-HP
+  35  12  14 CO-CO
+  36  12  42 CO-HP
+  37  12  43 CO-HP
+  38  13  15 CO-CO
+  39  13  44 CO-HP
+  40  13  45 CO-HP
+  41  14  16 CO-CO
+  42  14  46 CO-HP
+  43  14  47 CO-HP
+  44  15  17 CO-CS
+  45  15  48 CO-HP
+  46  15  49 CO-HP
+  47  16  18 CP-CO
+  48  16  50 CO-HP
+  49  16  51 CO-HP
+  50  17  19 CS-SS
+  51  17  52 CS-HP
+  52  17  53 CS-HP
+  53  18  54 CP-HP
+  54  18  55 CP-HP
+  55  18  56 CP-HP
+  56  19  57 SS-HS
+
+<ANGLE>
+   1   1   2   3 CO-CO-CO
+   2   1   2  22 CO-CO-HP
+   3   1   2  23 CO-CO-HP
+   4   1   4   6 CO-CO-CO
+   5   1   4  26 CO-CO-HP
+   6   1   4  27 CO-CO-HP
+   7   2   1   4 CO-CO-CO
+   8   2   1  20 CO-CO-HP
+   9   2   1  21 CO-CO-HP
+  10   2   3   5 CO-CO-CO
+  11   2   3  24 CO-CO-HP
+  12   2   3  25 CO-CO-HP
+  13   3   2  22 CO-CO-HP
+  14   3   2  23 CO-CO-HP
+  15   3   5   7 CO-CO-CO
+  16   3   5  28 CO-CO-HP
+  17   3   5  29 CO-CO-HP
+  18   4   1  20 CO-CO-HP
+  19   4   1  21 CO-CO-HP
+  20   4   6   8 CO-CO-CO
+  21   4   6  30 CO-CO-HP
+  22   4   6  31 CO-CO-HP
+  23   5   3  24 CO-CO-HP
+  24   5   3  25 CO-CO-HP
+  25   5   7   9 CO-CO-CO
+  26   5   7  32 CO-CO-HP
+  27   5   7  33 CO-CO-HP
+  28   6   4  26 CO-CO-HP
+  29   6   4  27 CO-CO-HP
+  30   6   8  10 CO-CO-CO
+  31   6   8  34 CO-CO-HP
+  32   6   8  35 CO-CO-HP
+  33   7   5  28 CO-CO-HP
+  34   7   5  29 CO-CO-HP
+  35   7   9  11 CO-CO-CO
+  36   7   9  36 CO-CO-HP
+  37   7   9  37 CO-CO-HP
+  38   8   6  30 CO-CO-HP
+  39   8   6  31 CO-CO-HP
+  40   8  10  12 CO-CO-CO
+  41   8  10  38 CO-CO-HP
+  42   8  10  39 CO-CO-HP
+  43   9   7  32 CO-CO-HP
+  44   9   7  33 CO-CO-HP
+  45   9  11  13 CO-CO-CO
+  46   9  11  40 CO-CO-HP
+  47   9  11  41 CO-CO-HP
+  48  10   8  34 CO-CO-HP
+  49  10   8  35 CO-CO-HP
+  50  10  12  14 CO-CO-CO
+  51  10  12  42 CO-CO-HP
+  52  10  12  43 CO-CO-HP
+  53  11   9  36 CO-CO-HP
+  54  11   9  37 CO-CO-HP
+  55  11  13  15 CO-CO-CO
+  56  11  13  44 CO-CO-HP
+  57  11  13  45 CO-CO-HP
+  58  12  10  38 CO-CO-HP
+  59  12  10  39 CO-CO-HP
+  60  12  14  16 CO-CO-CO
+  61  12  14  46 CO-CO-HP
+  62  12  14  47 CO-CO-HP
+  63  13  11  40 CO-CO-HP
+  64  13  11  41 CO-CO-HP
+  65  13  15  17 CO-CO-CS
+  66  13  15  48 CO-CO-HP
+  67  13  15  49 CO-CO-HP
+  68  14  12  42 CO-CO-HP
+  69  14  12  43 CO-CO-HP
+  70  14  16  18 CP-CO-CO
+  71  14  16  50 CO-CO-HP
+  72  14  16  51 CO-CO-HP
+  73  15  13  44 CO-CO-HP
+  74  15  13  45 CO-CO-HP
+  75  15  17  19 CO-CS-SS
+  76  15  17  52 CO-CS-HP
+  77  15  17  53 CO-CS-HP
+  78  16  14  46 CO-CO-HP
+  79  16  14  47 CO-CO-HP
+  80  16  18  54 CO-CP-HP
+  81  16  18  55 CO-CP-HP
+  82  16  18  56 CO-CP-HP
+  83  17  15  48 CS-CO-HP
+  84  17  15  49 CS-CO-HP
+  85  17  19  57 CS-SS-HS
+  86  18  16  50 CP-CO-HP
+  87  18  16  51 CP-CO-HP
+  88  19  17  52 HP-CS-SS
+  89  19  17  53 HP-CS-SS
+  90  20   1  21 HP-CO-HP
+  91  22   2  23 HP-CO-HP
+  92  24   3  25 HP-CO-HP
+  93  26   4  27 HP-CO-HP
+  94  28   5  29 HP-CO-HP
+  95  30   6  31 HP-CO-HP
+  96  32   7  33 HP-CO-HP
+  97  34   8  35 HP-CO-HP
+  98  36   9  37 HP-CO-HP
+  99  38  10  39 HP-CO-HP
+ 100  40  11  41 HP-CO-HP
+ 101  42  12  43 HP-CO-HP
+ 102  44  13  45 HP-CO-HP
+ 103  46  14  47 HP-CO-HP
+ 104  48  15  49 HP-CO-HP
+ 105  50  16  51 HP-CO-HP
+ 106  52  17  53 HP-CS-HP
+ 107  54  18  55 HP-CP-HP
+ 108  54  18  56 HP-CP-HP
+ 109  55  18  56 HP-CP-HP
+
+<TORSION_RB>
+   1   1   2   3   5 CO-CO-CO-CO
+   2   1   2   3  24 HP-CO-CO-CO
+   3   1   2   3  25 HP-CO-CO-CO
+   4   1   4   6   8 CO-CO-CO-CO
+   5   1   4   6  30 HP-CO-CO-CO
+   6   1   4   6  31 HP-CO-CO-CO
+   7   2   1   4   6 CO-CO-CO-CO
+   8   2   1   4  26 HP-CO-CO-CO
+   9   2   1   4  27 HP-CO-CO-CO
+  10   2   3   5   7 CO-CO-CO-CO
+  11   2   3   5  28 HP-CO-CO-CO
+  12   2   3   5  29 HP-CO-CO-CO
+  13   3   2   1   4 CO-CO-CO-CO
+  14   3   2   1  20 HP-CO-CO-CO
+  15   3   2   1  21 HP-CO-CO-CO
+  16   3   5   7   9 CO-CO-CO-CO
+  17   3   5   7  32 HP-CO-CO-CO
+  18   3   5   7  33 HP-CO-CO-CO
+  19   4   1   2  22 HP-CO-CO-CO
+  20   4   1   2  23 HP-CO-CO-CO
+  21   4   6   8  10 CO-CO-CO-CO
+  22   4   6   8  34 HP-CO-CO-CO
+  23   4   6   8  35 HP-CO-CO-CO
+  24   5   3   2  22 HP-CO-CO-CO
+  25   5   3   2  23 HP-CO-CO-CO
+  26   5   7   9  11 CO-CO-CO-CO
+  27   5   7   9  36 HP-CO-CO-CO
+  28   5   7   9  37 HP-CO-CO-CO
+  29   6   4   1  20 HP-CO-CO-CO
+  30   6   4   1  21 HP-CO-CO-CO
+  31   6   8  10  12 CO-CO-CO-CO
+  32   6   8  10  38 HP-CO-CO-CO
+  33   6   8  10  39 HP-CO-CO-CO
+  34   7   5   3  24 HP-CO-CO-CO
+  35   7   5   3  25 HP-CO-CO-CO
+  36   7   9  11  13 CO-CO-CO-CO
+  37   7   9  11  40 HP-CO-CO-CO
+  38   7   9  11  41 HP-CO-CO-CO
+  39   8   6   4  26 HP-CO-CO-CO
+  40   8   6   4  27 HP-CO-CO-CO
+  41   8  10  12  14 CO-CO-CO-CO
+  42   8  10  12  42 HP-CO-CO-CO
+  43   8  10  12  43 HP-CO-CO-CO
+  44   9   7   5  28 HP-CO-CO-CO
+  45   9   7   5  29 HP-CO-CO-CO
+  46   9  11  13  15 CO-CO-CO-CO
+  47   9  11  13  44 HP-CO-CO-CO
+  48   9  11  13  45 HP-CO-CO-CO
+  49  10   8   6  30 HP-CO-CO-CO
+  50  10   8   6  31 HP-CO-CO-CO
+  51  10  12  14  16 CO-CO-CO-CO
+  52  10  12  14  46 HP-CO-CO-CO
+  53  10  12  14  47 HP-CO-CO-CO
+  54  11   9   7  32 HP-CO-CO-CO
+  55  11   9   7  33 HP-CO-CO-CO
+  56  11  13  15  17 CO-CO-CO-CS
+  57  11  13  15  48 HP-CO-CO-CO
+  58  11  13  15  49 HP-CO-CO-CO
+  59  12  10   8  34 HP-CO-CO-CO
+  60  12  10   8  35 HP-CO-CO-CO
+  61  12  14  16  18 CP-CO-CO-CO
+  62  12  14  16  50 HP-CO-CO-CO
+  63  12  14  16  51 HP-CO-CO-CO
+  64  13  11   9  36 HP-CO-CO-CO
+  65  13  11   9  37 HP-CO-CO-CO
+  66  13  15  17  19 CO-CO-CS-SS
+  67  13  15  17  52 HP-CS-CO-CO
+  68  13  15  17  53 HP-CS-CO-CO
+  69  14  12  10  38 HP-CO-CO-CO
+  70  14  12  10  39 HP-CO-CO-CO
+  71  14  16  18  54 HP-CP-CO-CO
+  72  14  16  18  55 HP-CP-CO-CO
+  73  14  16  18  56 HP-CP-CO-CO
+  74  15  13  11  40 HP-CO-CO-CO
+  75  15  13  11  41 HP-CO-CO-CO
+  76  15  17  19  57 CO-CS-SS-HS
+  77  16  14  12  42 HP-CO-CO-CO
+  78  16  14  12  43 HP-CO-CO-CO
+  79  17  15  13  44 HP-CO-CO-CS
+  80  17  15  13  45 HP-CO-CO-CS
+  81  18  16  14  46 HP-CO-CO-CP
+  82  18  16  14  47 HP-CO-CO-CP
+  83  19  17  15  48 HP-CO-CS-SS
+  84  19  17  15  49 HP-CO-CS-SS
+  85  20   1   2  22 HP-CO-CO-HP
+  86  20   1   2  23 HP-CO-CO-HP
+  87  20   1   4  26 HP-CO-CO-HP
+  88  20   1   4  27 HP-CO-CO-HP
+  89  21   1   2  22 HP-CO-CO-HP
+  90  21   1   2  23 HP-CO-CO-HP
+  91  21   1   4  26 HP-CO-CO-HP
+  92  21   1   4  27 HP-CO-CO-HP
+  93  22   2   3  24 HP-CO-CO-HP
+  94  22   2   3  25 HP-CO-CO-HP
+  95  23   2   3  24 HP-CO-CO-HP
+  96  23   2   3  25 HP-CO-CO-HP
+  97  24   3   5  28 HP-CO-CO-HP
+  98  24   3   5  29 HP-CO-CO-HP
+  99  25   3   5  28 HP-CO-CO-HP
+ 100  25   3   5  29 HP-CO-CO-HP
+ 101  26   4   6  30 HP-CO-CO-HP
+ 102  26   4   6  31 HP-CO-CO-HP
+ 103  27   4   6  30 HP-CO-CO-HP
+ 104  27   4   6  31 HP-CO-CO-HP
+ 105  28   5   7  32 HP-CO-CO-HP
+ 106  28   5   7  33 HP-CO-CO-HP
+ 107  29   5   7  32 HP-CO-CO-HP
+ 108  29   5   7  33 HP-CO-CO-HP
+ 109  30   6   8  34 HP-CO-CO-HP
+ 110  30   6   8  35 HP-CO-CO-HP
+ 111  31   6   8  34 HP-CO-CO-HP
+ 112  31   6   8  35 HP-CO-CO-HP
+ 113  32   7   9  36 HP-CO-CO-HP
+ 114  32   7   9  37 HP-CO-CO-HP
+ 115  33   7   9  36 HP-CO-CO-HP
+ 116  33   7   9  37 HP-CO-CO-HP
+ 117  34   8  10  38 HP-CO-CO-HP
+ 118  34   8  10  39 HP-CO-CO-HP
+ 119  35   8  10  38 HP-CO-CO-HP
+ 120  35   8  10  39 HP-CO-CO-HP
+ 121  36   9  11  40 HP-CO-CO-HP
+ 122  36   9  11  41 HP-CO-CO-HP
+ 123  37   9  11  40 HP-CO-CO-HP
+ 124  37   9  11  41 HP-CO-CO-HP
+ 125  38  10  12  42 HP-CO-CO-HP
+ 126  38  10  12  43 HP-CO-CO-HP
+ 127  39  10  12  42 HP-CO-CO-HP
+ 128  39  10  12  43 HP-CO-CO-HP
+ 129  40  11  13  44 HP-CO-CO-HP
+ 130  40  11  13  45 HP-CO-CO-HP
+ 131  41  11  13  44 HP-CO-CO-HP
+ 132  41  11  13  45 HP-CO-CO-HP
+ 133  42  12  14  46 HP-CO-CO-HP
+ 134  42  12  14  47 HP-CO-CO-HP
+ 135  43  12  14  46 HP-CO-CO-HP
+ 136  43  12  14  47 HP-CO-CO-HP
+ 137  44  13  15  48 HP-CO-CO-HP
+ 138  44  13  15  49 HP-CO-CO-HP
+ 139  45  13  15  48 HP-CO-CO-HP
+ 140  45  13  15  49 HP-CO-CO-HP
+ 141  46  14  16  50 HP-CO-CO-HP
+ 142  46  14  16  51 HP-CO-CO-HP
+ 143  47  14  16  50 HP-CO-CO-HP
+ 144  47  14  16  51 HP-CO-CO-HP
+ 145  48  15  17  52 HP-CO-CS-HP
+ 146  48  15  17  53 HP-CO-CS-HP
+ 147  49  15  17  52 HP-CO-CS-HP
+ 148  49  15  17  53 HP-CO-CS-HP
+ 149  50  16  18  54 HP-CP-CO-HP
+ 150  50  16  18  55 HP-CP-CO-HP
+ 151  50  16  18  56 HP-CP-CO-HP
+ 152  51  16  18  54 HP-CP-CO-HP
+ 153  51  16  18  55 HP-CP-CO-HP
+ 154  51  16  18  56 HP-CP-CO-HP
+ 155  52  17  19  57 HP-CS-SS-HS
+ 156  53  17  19  57 HP-CS-SS-HS
+
+<END>

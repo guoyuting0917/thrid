@@ -1,0 +1,179 @@
+<BOND>
+   1   1   2 CF-FF
+   2   1   3 CF-FF
+   3   1   4 CF-FF
+   4   1   5 CF-CG
+   5   5   6 CG-FG
+   6   5   7 CG-FG
+   7   5   8 CG-CG
+   8   8   9 CG-FG
+   9   8  10 CG-FG
+  10   8  11 CG-CG
+  11  11  12 CG-FG
+  12  11  13 CG-FG
+  13  11  14 CG-CG
+  14  14  15 CG-FG
+  15  14  16 CG-FG
+  16  14  17 CG-CG
+  17  17  18 CG-FG
+  18  17  19 CG-FG
+  19  17  20 CG-CG
+  20  20  21 CG-FG
+  21  20  22 CG-FG
+  22  20  23 CG-CG
+  23  23  24 CG-FG
+  24  23  25 CG-FG
+  25  23  26 CG-CG
+  26  26  27 CG-FG
+  27  26  28 CG-FG
+  28  26  29 CF-CG
+  29  29  30 CF-FF
+  30  29  31 CF-FF
+  31  29  32 CF-FF
+
+<ANGLE>
+   1   1   5   6 FG-CG-CF
+   2   1   5   7 FG-CG-CF
+   3   1   5   8 CF-CG-CG
+   4   2   1   3 FF-CF-FF
+   5   2   1   4 FF-CF-FF
+   6   2   1   5 FF-CF-CG
+   7   3   1   4 FF-CF-FF
+   8   3   1   5 FF-CF-CG
+   9   4   1   5 FF-CF-CG
+  10   5   8   9 FG-CG-CG
+  11   5   8  10 FG-CG-CG
+  12   5   8  11 CG-CG-CG
+  13   6   5   7 FG-CG-FG
+  14   6   5   8 FG-CG-CG
+  15   7   5   8 FG-CG-CG
+  16   8  11  12 FG-CG-CG
+  17   8  11  13 FG-CG-CG
+  18   8  11  14 CG-CG-CG
+  19   9   8  10 FG-CG-FG
+  20   9   8  11 FG-CG-CG
+  21  10   8  11 FG-CG-CG
+  22  11  14  15 FG-CG-CG
+  23  11  14  16 FG-CG-CG
+  24  11  14  17 CG-CG-CG
+  25  12  11  13 FG-CG-FG
+  26  12  11  14 FG-CG-CG
+  27  13  11  14 FG-CG-CG
+  28  14  17  18 FG-CG-CG
+  29  14  17  19 FG-CG-CG
+  30  14  17  20 CG-CG-CG
+  31  15  14  16 FG-CG-FG
+  32  15  14  17 FG-CG-CG
+  33  16  14  17 FG-CG-CG
+  34  17  20  21 FG-CG-CG
+  35  17  20  22 FG-CG-CG
+  36  17  20  23 CG-CG-CG
+  37  18  17  19 FG-CG-FG
+  38  18  17  20 FG-CG-CG
+  39  19  17  20 FG-CG-CG
+  40  20  23  24 FG-CG-CG
+  41  20  23  25 FG-CG-CG
+  42  20  23  26 CG-CG-CG
+  43  21  20  22 FG-CG-FG
+  44  21  20  23 FG-CG-CG
+  45  22  20  23 FG-CG-CG
+  46  23  26  27 FG-CG-CG
+  47  23  26  28 FG-CG-CG
+  48  23  26  29 CF-CG-CG
+  49  24  23  25 FG-CG-FG
+  50  24  23  26 FG-CG-CG
+  51  25  23  26 FG-CG-CG
+  52  26  29  30 FF-CF-CG
+  53  26  29  31 FF-CF-CG
+  54  26  29  32 FF-CF-CG
+  55  27  26  28 FG-CG-FG
+  56  27  26  29 FG-CG-CF
+  57  28  26  29 FG-CG-CF
+  58  30  29  31 FF-CF-FF
+  59  30  29  32 FF-CF-FF
+  60  31  29  32 FF-CF-FF
+
+<TORSION_RB>
+   1   1   5   8   9 FG-CG-CG-CG
+   2   1   5   8  10 FG-CG-CG-CG
+   3   1   5   8  11 CG-CG-CG-CG
+   4   2   1   5   6 FG-CG-CG-FG
+   5   2   1   5   7 FG-CG-CG-FG
+   6   2   1   5   8 FG-CG-CG-CG
+   7   3   1   5   6 FG-CG-CG-FG
+   8   3   1   5   7 FG-CG-CG-FG
+   9   3   1   5   8 FG-CG-CG-CG
+  10   4   1   5   6 FG-CG-CG-FG
+  11   4   1   5   7 FG-CG-CG-FG
+  12   4   1   5   8 FG-CG-CG-CG
+  13   5   8  11  12 FG-CG-CG-CG
+  14   5   8  11  13 FG-CG-CG-CG
+  15   5   8  11  14 CG-CG-CG-CG
+  16   6   5   8   9 FG-CG-CG-FG
+  17   6   5   8  10 FG-CG-CG-FG
+  18   6   5   8  11 FG-CG-CG-CG
+  19   7   5   8   9 FG-CG-CG-FG
+  20   7   5   8  10 FG-CG-CG-FG
+  21   7   5   8  11 FG-CG-CG-CG
+  22   8  11  14  15 FG-CG-CG-CG
+  23   8  11  14  16 FG-CG-CG-CG
+  24   8  11  14  17 CG-CG-CG-CG
+  25   9   8  11  12 FG-CG-CG-FG
+  26   9   8  11  13 FG-CG-CG-FG
+  27   9   8  11  14 FG-CG-CG-CG
+  28  10   8  11  12 FG-CG-CG-FG
+  29  10   8  11  13 FG-CG-CG-FG
+  30  10   8  11  14 FG-CG-CG-CG
+  31  11  14  17  18 FG-CG-CG-CG
+  32  11  14  17  19 FG-CG-CG-CG
+  33  11  14  17  20 CG-CG-CG-CG
+  34  12  11  14  15 FG-CG-CG-FG
+  35  12  11  14  16 FG-CG-CG-FG
+  36  12  11  14  17 FG-CG-CG-CG
+  37  13  11  14  15 FG-CG-CG-FG
+  38  13  11  14  16 FG-CG-CG-FG
+  39  13  11  14  17 FG-CG-CG-CG
+  40  14  17  20  21 FG-CG-CG-CG
+  41  14  17  20  22 FG-CG-CG-CG
+  42  14  17  20  23 CG-CG-CG-CG
+  43  15  14  17  18 FG-CG-CG-FG
+  44  15  14  17  19 FG-CG-CG-FG
+  45  15  14  17  20 FG-CG-CG-CG
+  46  16  14  17  18 FG-CG-CG-FG
+  47  16  14  17  19 FG-CG-CG-FG
+  48  16  14  17  20 FG-CG-CG-CG
+  49  17  20  23  24 FG-CG-CG-CG
+  50  17  20  23  25 FG-CG-CG-CG
+  51  17  20  23  26 CG-CG-CG-CG
+  52  18  17  20  21 FG-CG-CG-FG
+  53  18  17  20  22 FG-CG-CG-FG
+  54  18  17  20  23 FG-CG-CG-CG
+  55  19  17  20  21 FG-CG-CG-FG
+  56  19  17  20  22 FG-CG-CG-FG
+  57  19  17  20  23 FG-CG-CG-CG
+  58  20  23  26  27 FG-CG-CG-CG
+  59  20  23  26  28 FG-CG-CG-CG
+  60  20  23  26  29 CG-CG-CG-CG
+  61  21  20  23  24 FG-CG-CG-FG
+  62  21  20  23  25 FG-CG-CG-FG
+  63  21  20  23  26 FG-CG-CG-CG
+  64  22  20  23  24 FG-CG-CG-FG
+  65  22  20  23  25 FG-CG-CG-FG
+  66  22  20  23  26 FG-CG-CG-CG
+  67  23  26  29  30 FG-CG-CG-CG
+  68  23  26  29  31 FG-CG-CG-CG
+  69  23  26  29  32 FG-CG-CG-CG
+  70  24  23  26  27 FG-CG-CG-FG
+  71  24  23  26  28 FG-CG-CG-FG
+  72  24  23  26  29 FG-CG-CG-CG
+  73  25  23  26  27 FG-CG-CG-FG
+  74  25  23  26  28 FG-CG-CG-FG
+  75  25  23  26  29 FG-CG-CG-CG
+  76  27  26  29  30 FG-CG-CG-FG
+  77  27  26  29  31 FG-CG-CG-FG
+  78  27  26  29  32 FG-CG-CG-FG
+  79  28  26  29  30 FG-CG-CG-FG
+  80  28  26  29  31 FG-CG-CG-FG
+  81  28  26  29  32 FG-CG-CG-FG
+
+<END>

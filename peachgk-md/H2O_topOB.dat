@@ -1,0 +1,11 @@
+<BOND>
+   1   1   2 HB-OB
+   2   1   3 HB-HB
+   3   2   3 HB-OB
+
+<ANGLE>
+   1   1   2   3 HB-OB-HB
+
+<TORSION>
+
+<END>

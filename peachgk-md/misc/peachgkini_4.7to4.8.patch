@@ -1,0 +1,80 @@
+*** ../../peachgk-md-2.132/peachgk.ini	2010-07-06 19:05:03.019119500 +0900
+--- peachgk.ini	2011-02-13 22:34:35.830594600 +0900
+***************
+*** 1,4 ****
+! ### MD control script for peachgk Ver.4.7 '10.07.05 ###
+  
+  #input&output file name
+  iuwtopname      H2O_topOB.dat
+--- 1,4 ----
+! ### MD control script for peachgk Ver.4.8 '11.02.13 ###
+  
+  #input&output file name
+  iuwtopname      H2O_topOB.dat
+***************
+*** 40,45 ****
+--- 40,48 ----
+  #         indexes of atom are aligned.
+  # !!! set "pdbresname" and the following word (within 4 character)
+  #       to specify the "resname" in PDB format
++ # !!! set "centerfix" to fix barycentric velocity of each molecular speices
++ #         (ifcenterfix_poly, _water, or _ma must be ON
++ #          and ifcenterfix_all must be OFF)
+  npolytyp        2
+  
+  npolymoletyp      1       5       24 C7H15OH_cor.dat C7H15OH_top.dat  .true.
+***************
+*** 88,94 ****
+  #	md_mtk	NPT constant MD (MTK eq.)
+  #	md_nhc	NVT constant MD (NHC eq.)
+  #	md_nve	NVE constant MD
+! #	md_htf	heat flux calculation in NVE MD (heatflux.ini is needed)
+  maxnstep        60000
+  nstage          5
+  
+--- 91,97 ----
+  #	md_mtk	NPT constant MD (MTK eq.)
+  #	md_nhc	NVT constant MD (NHC eq.)
+  #	md_nve	NVE constant MD
+! #	md_htf	heat flux calculation in NVE MD (transflux.ini is needed)
+  maxnstep        60000
+  nstage          5
+  
+***************
+*** 120,125 ****
+--- 123,129 ----
+  ifstarec                .false. ! read old state
+  ifcreatecor             .true.  ! create new coordinate
+  
++ ifcenterfix_all         .true.  ! if true, following options are ignored
+  ifcenterfix_poly        .true.
+  ifcenterfix_water       .true.
+  ifcenterfix_ma          .true.
+***************
+*** 154,159 ****
+--- 158,164 ----
+  #mts_sh          long
+  #mts_rfh         short
+  #mts_dou         long
++ #mts_cnpvw       long
+  mts_posres      short
+  mts_potbias     long
+  
+***************
+*** 321,324 ****
+--- 326,340 ----
+  rcut_bookdouh   8.0d-10         ! cut off radius of bookkeeping[m] of DOU (H-Au)
+  nstep_bookdouh  50              ! bookkeeping interval of DOU interaction (H-Au)
+  
++ #RP-VW cutoff
++ ifcnp           .false.         ! flag to control normal pressure
++ 
++ rcutrpvw        12.0d-10        ! RP-VW interaction cutoff length [m]
++ 
++ #ifcellindex_rpvw .false.        ! **dummy** flag for cell index (RP-VW)
++ 
++ ifbookrpvw       .false.        ! flag for bookkeeping of RP-VW interaction
++ rcut_bookrpvw     14.0d-10      ! cut off radius of bookkeeping[m] of RP-VW
++ nstep_bookrpvw   50             ! bookkeeping interval of RP-VW interaction
++ 
+  END

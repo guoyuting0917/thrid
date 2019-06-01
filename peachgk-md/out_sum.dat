@@ -1,0 +1,224 @@
+***** parameter summarization *****
+   xref  0.10000E-09
+   eref  0.69511E-20
+   mref  0.19943E-25
+   qref  0.16021E-18
+   vref  0.59038E+03
+timeref  0.16938E-12
+tempref  0.50346E+03
+   pref  0.69511E+10
+   fref  0.69511E-10
+eps0ref  0.36926E-07
+ 
+xcel  0.38595000E-08
+ycel  0.38583000E-08
+zcel  0.13080000E-07
+ 
+ifewald            F
+  alpha  0.29202899E+10
+   kmax            8
+  nwave            0
+  rrcut  0.90000000E-09
+ 
+   ifspme       F
+    nfft1      50
+    nfft2      50
+    nfft3      50
+pme_order       6
+ 
+iffennell       F
+ 
+ifljari       T
+ifljgeo       F
+ 
+ iflocalheat       F
+ifregionheat       F
+  ifregionhf       F
+  ifreglange       T
+   iftcratom       T
+    ifoutthc       F
+  iflocalfix       T
+ iflocalfixz       F
+iflocalfixzg       F
+       ifcnp       F
+    ifposres       F
+   ifpotbias       F
+  iflocalvel       F
+   ifstrmvel       F
+ 
+    dt_long  0.10000E-14
+     dt_med  0.10000E-14
+   dt_short  0.20000E-15
+  nstep_med            1
+nstep_short            5
+ 
+    maxnstep    1000
+      nstage       1
+ 
+ nstep_stage  1    1000
+mdcont_stage  1  md_htf
+ 
+nstep_maxwel      -1
+nstep_expand      -1
+    r_expand  0.11111111E+01
+ 
+            eps0  0.88542E-11
+            rcut  0.12000E-08
+ 
+ifcellindex            F
+     ifbook            T
+ nstep_book           50
+  rcut_book  0.14000E-08
+ 
+        rcutmor  0.12000E-08
+ 
+ifcellindex_mor            F
+      ifbookmor            T
+   rcut_bookmor  0.14000E-08
+  nstep_bookmor           50
+ 
+         rcutsh  0.15000E-08
+ 
+ ifcellindex_sh            F
+       ifbooksh            F
+    rcut_booksh  0.17000E-08
+   nstep_booksh           50
+ 
+        rcutrfhfo  0.10000E-08
+ 
+ifcellindex_rfhfo            F
+      ifbookrfhfo            F
+   rcut_bookrfhfo  0.12000E-08
+  nstep_bookrfhfo           50
+ 
+        rcutrfhoo  0.80000E-09
+ 
+ifcellindex_rfhoo            F
+      ifbookrfhoo            F
+   rcut_bookrfhoo  0.10000E-08
+  nstep_bookrfhoo           50
+ 
+        rcutrfhoh  0.50000E-09
+ 
+ifcellindex_rfhoh            F
+      ifbookrfhoh            F
+   rcut_bookrfhoh  0.80000E-09
+  nstep_bookrfhoh           50
+ 
+        rcutdouo  0.11000E-08
+      rcutindouo  0.70000E-09
+ 
+ifcellindex_douo            F
+      ifbookdouo            F
+   rcut_bookdouo  0.13000E-08
+  nstep_bookdouo           50
+ 
+        rcutdouh  0.60000E-09
+ 
+ifcellindex_douh            F
+      ifbookdouh            F
+   rcut_bookdouh  0.80000E-09
+  nstep_bookdouh           50
+ 
+      rcutrpvw  0.12000E-08
+ 
+    ifbookrpvw            F
+ rcut_bookrpvw  0.14000E-08
+nstep_bookrpvw           50
+ 
+          ifcstmnb       F
+ifcellindex_cstmnb       F
+      ifbookcstmnb       F
+ 
+      natom    3661
+      nmole    3661
+      npoly       0
+   npolytyp       0
+     nwater       0
+ nwater_all       0
+     nmatom    3661
+     nmatyp       8
+  nmatomtyp  1     224 PT
+  nmatomtyp  2     224 PT
+  nmatomtyp  3    1344 PT
+  nmatomtyp  4    1344 PT
+  nmatomtyp  5     224 PT
+  nmatomtyp  6     224 PT
+  nmatomtyp  7      70 A1
+  nmatomtyp  8       7 A2
+ 
+   degfree_water    1       0
+      degfree_ma    1       0
+      degfree_ma    2     672
+      degfree_ma    3    4032
+      degfree_ma    4    4032
+      degfree_ma    5     672
+      degfree_ma    6       0
+      degfree_ma    7     210
+      degfree_ma    8      21
+ 
+ degfree_polyall       0
+   degfree_water       0
+   degfree_maall    9639
+     degfree_all    9639
+ 
+   ifstarec T
+ifcreatecor F
+ 
+ifrdaddtop F
+ 
+    ifoutpdb T
+nstep_pdbout       0
+ 
+     temp_poly   120.00
+    temp_water   120.00
+       temp_ma   120.00
+ temp_poly_ini     0.00
+temp_water_ini     0.00
+   temp_ma_ini     0.00
+ 
+tcontinterval  100
+ 
+  outinterval  100
+pressinterval  100
+heatfinterval  100
+ 
+ifcalpremole        F
+ifcalpreatom        T
+ ifnetqcorrp        F
+ 
+Owatertyp OB
+Hwatertyp HB
+ 
+compfact  1.000
+ 
+ifrattle        F
+eps_rattle  0.10000E-06
+ 
+mchain               3
+ tfreq  0.10000000E+14
+  text         120.000
+ 
+ vfreq  0.20000000E+12
+  pext  0.10000000E+06
+ ifpatmcont T
+ ifpmolcont F
+ pcont_axisiso  
+ 
+ next   1
+nyosh   3
+ 
+iflimitmove F
+  limitdist  0.10000000E-10
+ 
+ d_rini  0.50000000E-10
+ d_rmax  0.10000000E-09
+d_econv  0.10000000E-23
+ d_rmsf  0.10000000E-12
+ 
+ifcalljlong       F
+   solvetyp      OB
+     nsolve      10
+ 
+nspltbl    1100
+ 

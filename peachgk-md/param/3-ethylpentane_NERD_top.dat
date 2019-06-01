@@ -1,0 +1,25 @@
+<BOND>
+   1   1   2 CN-CU
+   2   1   3 CN-CU
+   3   1   4 CN-CU
+   4   2   7 CU-CV
+   5   3   6 CU-CV
+   6   4   5 CU-CV
+
+<ANGLE>
+   1   1   2   7 CN-CU-CV
+   2   1   3   6 CN-CU-CV
+   3   1   4   5 CN-CU-CV
+   4   2   1   3 CU-CN-CU
+   5   2   1   4 CU-CN-CU
+   6   3   1   4 CU-CN-CU
+
+<TORSION_RB>
+   1   2   1   3   6 X-CN-CU-X  
+   2   2   1   4   5 X-CN-CU-X  
+   3   3   1   2   7 X-CN-CU-X  
+   4   3   1   4   5 X-CN-CU-X  
+   5   4   1   2   7 X-CN-CU-X  
+   6   4   1   3   6 X-CN-CU-X  
+
+<END>

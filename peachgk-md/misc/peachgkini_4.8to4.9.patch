@@ -1,0 +1,40 @@
+*** /home/gota/peachgk_md/peachgk-md-2.133_rev1/peachgk.ini	2012-05-15 07:29:10.190448500 +0900
+--- ../peachgk.ini	2012-05-25 01:40:51.777899500 +0900
+***************
+*** 1,4 ****
+! ### MD control script for peachgk Ver.4.8 '11.02.13 ###
+  
+  #input&output file name
+  iuwtopname      H2O_topOB.dat
+--- 1,4 ----
+! ### MD control script for peachgk Ver.4.9 '12.05.22 ###
+  
+  #input&output file name
+  iuwtopname      H2O_topOB.dat
+***************
+*** 92,97 ****
+--- 92,98 ----
+  #	md_nhc	NVT constant MD (NHC eq.)
+  #	md_nve	NVE constant MD
+  #	md_htf	heat flux calculation in NVE MD (transflux.ini is needed)
++ #	md_ems	energy minimization by steepest descent (SD) method
+  maxnstep        60000
+  nstage          5
+  
+***************
+*** 224,229 ****
+--- 225,238 ----
+  nfft3           30              ! grid points in SPME
+  pme_order       4               ! B-spline order
+  
++ # parameter for energy minimazation
++ d_rini         0.5d-10          ! initial displacement dr for EM [m]
++ d_rmax         1.0d-10          ! maximum displacement dr for EM [m]
++ 
++ d_econv        1.0d-24          ! convergence condition for energy in EM [J]
++ d_rmsf         1.0d-13          ! convergence condition for 
++                                 !    root mean square force in EM [N]
++ 
+  # other MD parameters
+  rcut            12.0d-10        ! vdw cutoff length [m]
+                                  ! if 0.0d0 is chosen, rcut is L/2
