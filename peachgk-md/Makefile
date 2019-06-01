@@ -1,14 +1,14 @@
 #
 # Makefile for peachgk_md.F  Ver.2.142
-#   for calculating heat and momentum flux
+#   for single and mpi calculations
 #
 #SHELL   = /bin/sh
 
 ### Linker
-#LINKER 	= gfortran       # GCC fortran compiler
+LINKER 	= gfortran       # GCC fortran compiler
 #LINKER 	= ifort       # INTEL fortran compiler
 #LINKER		= pgfortran   # PGI fortran compiler
-LINKER 	= mpif90      # openmpi MPI (older version)
+#LINKER 	= mpif90      # openmpi MPI (older version)
 #LINKER 	= mpifort     # openmpi MPI
 #LINKER 	= mpiifort    # INTEL MPI on AFI-NITY
 
@@ -17,19 +17,16 @@ CPP = cpp
 
 ### Optimization flags
 #FFLAGS 	= -O3
-#FFLAGS 	= -O3 -Wall -I.                # GCC verbose option
+FFLAGS 	= -O3 -Wall -I.                # GCC verbose option
 #FFLAGS 	= -O3 -xHost                # INTEL compiler option
 #FFLAGS 	= -O3 -xHost -ipo           # aggressive opt. (not recommended)
-FFLAGS 	= -O3 -xHost -mcmodel=large -shared-intel   # using large memory
+#FFLAGS 	= -O3 -xHost -mcmodel=large -shared-intel # using large memory
 #FFLAGS 	= -g -traceback -CB -fpe0   # debug mode (INTEL)
 #FFLAGS 	= -fastsse -O3 -Mipa=fast,inline -Minfo -mcmodel=medium   # PGI
 
 ### MPI flags
-MPIFLAGS	= -DMPI               # Build MPI executable
+#MPIFLAGS	= -DMPI               # Build MPI executable
 #MPIFLAGS	= -DMPI -Mmpi=mpich   # PGI with MPICH
-
-### energy flux flag
-HFFLAGS	= -DHF
 
 ### Optional flags
 FFLAGS2	+= -D_LJ_ONLY
@@ -40,13 +37,6 @@ FFLAGS2	+= -D_LJ_ONLY
 #FFLAGS2	+= -D_DOUBLE_OUTFOR
 #FFLAGS2	+= -D_IMPROP_UMBR
 #FFLAGS2	+= -D_CHARMM_NONB14
-#FFLAGS2	+= -D_OUTHF_HIGH -D_OUTMF_HIGH
-#FFLAGS2	+= -D_OUT_HFFOR
-#FFLAGS2	+= -D_HF_FENNELL
-#FFLAGS2	+= -D_HF_SKIP_EWALDR
-#FFLAGS2	+= -D_HF_ALL_DIR
-#FFLAGS2	+= -D_HF_BULK
-#FFLAGS2	+= -D_HF_BULK_EWK
 
 ### Custom potential function flags
 CSTMNBFLAGS	= -D_CSTMNB_V1
@@ -68,23 +58,23 @@ CSTMNBFLAGS	= -D_CSTMNB_V1
 
 #==========================================================================
 ### Compiler flags
-COMPFLAGS	= $(FFLAGS) $(FFLAGS2) $(MPIFLAGS) $(HFFLAGS)\
+COMPFLAGS	= $(FFLAGS) $(FFLAGS2) $(MPIFLAGS) \
 	$(CSTMNBFLAGS) \
 	$(TIMEFLAGS) \
 	$(FFTOPT) $(FFTINCLUDE)
 
 ### linker flags
-LINKFLAGS	= $(FFLAGS) $(MPIFLAGS) $(HFFLAGS)
+
+LINKFLAGS	= $(FFLAGS) $(MPIFLAGS)
 
 #==========================================================================
 ### Scalar calculation objects
 ifndef MPIFLAGS
-OBJ    	= md_global.o  mpi_global.o  spme_global.o\
+OBJ	= md_global.o  mpi_global.o  spme_global.o\
 	  interface_preproc.o  interface_mddriver.o  interface_mdtech.o\
 	  interface_interact.o  interface_timer.o  interface_tools.o\
 	  main_md.o  MPI_loopinit.o  malloc_larray.o\
-	  rdscript.o  rdtcont.o  rdhfcont.o  rdlangevin.o\
-	  rdheatf.o  rdpotbias.o\
+	  rdscript.o  rdtcont.o  rdhfcont.o  rdlangevin.o  rdpotbias.o\
 	  openfile.o  calbase.o\
 	  rdcor.o  rdtop.o\
 	  rdpara.o  rdpara_cstmnb.o  rdconst.o  mkmolept.o\
@@ -95,10 +85,9 @@ OBJ    	= md_global.o  mpi_global.o  spme_global.o\
 	  prelocalheat.o  prelocalfix.o  prelocalfixz.o  prelocalfixzg.o\
 	  preposres.o  prepotbias.o  prelocalvel.o  prepdbout.o\
 	  spline_interp.o\
-	  preheatf.o\
 	  prepmd.o  prepewk.o  upewk.o  fft_pme_init.o\
 	  erf_corr_cutoff.o  prepfennell.o  wrsumm.o\
-	  moldyn.o  moldyn_nhc.o  moldyn_mtk.o moldyn_hf.o\
+	  moldyn.o  moldyn_nhc.o  moldyn_mtk.o\
 	  enemin_sd.o\
 	  wrsta.o\
 	  nhcint.o  nhcpisoint.o  nhcpanisoint.o\
@@ -107,40 +96,31 @@ OBJ    	= md_global.o  mpi_global.o  spme_global.o\
 	  mklist_rfh.o  mklist_dou.o  mklist_rpvw.o  mklist_cstmnb.o\
 	  mklist_cell.o  mklist_mor_cell.o  mklist_sh_cell.o\
 	  mklist_rfh_cell.o  mklist_dou_cell.o\
-	  calforce.o  calforce_hf.o  accforce.o  calcom.o\
+	  calforce.o  accforce.o  calcom.o\
 	  contemp.o  contemp_e.o  contemp_nve.o  contemp_region.o\
 	  conhf_region.o  langevin_regist.o  langevin_region.o\
 	  mkmaxvel.o  cell_expand.o\
-	  calkin.o  calbond.o  calbond_hf.o  calangl.o  calangl_hf.o\
-	  calanglub.o  calanglub_hf.o\
-	  caltors.o  caltors_hf.o\
-	  caltorsrb.o  caltorsrb_hf.o\
-	  caltorsim.o  caltorsim_hf.o\
+	  calkin.o  calbond.o  calangl.o  calanglub.o\
+	  caltors.o  caltorsrb.o  caltorsim.o\
 	  calpress.o  calvol.o  calbox.o\
-	  ewaldr.o  ewaldr_hf.o  ewaldk.o  ewaldk_hf.o  fft_pme.o\
-	  calnon14.o  calnon14_hf.o  morse.o  morse_hf.o\
-	  shpot.o  shpot_hf.o  rfhpot.o  rfhpot_hf.o\
-	  doupot.o  doupot_hf.o\
-	  cnpvw.o\
-	  cstmnb.o  ent_calcstmnb.o  ent_calcstmnb_hf.o\
+	  ewaldr.o  ewaldk.o  fft_pme.o\
+	  calnon14.o  morse.o  shpot.o  rfhpot.o  doupot.o  cnpvw.o\
+	  cstmnb.o  ent_calcstmnb.o\
 	  calposres.o  calpotbias.o\
 	  rattle.o  rattle_mtk.o  rattle_z.o  rattle_zg.o\
 	  shake.o  shake_z.o  shake_zg.o\
 	  limitvel.o  ass_strmvel.o\
-	  calvirihf.o  calheatf.o  calmomentumf.o\
-	  output_data.o  output_for.o  output_hf.o  output_mf.o\
-	  output_thc.o  output_pdb.o  output_umb.o\
+	  output_data.o  output_for.o  output_thc.o  output_pdb.o  output_umb.o\
 	  output_eneem.o\
 	  time_global.o  time_method.o
 
 ### MPI calculation objects
 else
-OBJ    	= md_global.o  mpi_global.o  spme_global.o\
+OBJ	= md_global.o  mpi_global.o  spme_global.o\
 	  interface_preproc.o  interface_mddriver.o  interface_mdtech.o\
 	  interface_interact.o  interface_timer.o  interface_tools.o\
 	  main_md.o  MPI_loopinit.o  malloc_larray.o\
-	  rdscript.o  rdtcont.o  rdhfcont.o  rdlangevin.o\
-	  rdheatf.o  rdpotbias.o\
+	  rdscript.o  rdtcont.o  rdhfcont.o  rdlangevin.o  rdpotbias.o\
 	  openfile.o  calbase.o\
 	  rdcor.o  rdtop.o\
 	  rdpara.o  rdpara_cstmnb.o  rdconst.o  mkmolept.o\
@@ -151,10 +131,9 @@ OBJ    	= md_global.o  mpi_global.o  spme_global.o\
 	  prelocalheat.o  prelocalfix.o  prelocalfixz.o  prelocalfixzg.o\
 	  preposres.o  prepotbias.o  prelocalvel.o  prepdbout.o\
 	  spline_interp.o\
-	  preheatf.o\
 	  prepmd.o  prepewk.o  upewk.o  fft_pme_init.o\
 	  erf_corr_cutoff.o  prepfennell.o  wrsumm.o\
-	  moldyn.o  moldyn_nhc.o  moldyn_mtk.o moldyn_hf.o\
+	  moldyn.o  moldyn_nhc.o  moldyn_mtk.o\
 	  enemin_sd.o\
 	  wrsta.o\
 	  nhcint.o  nhcpisoint.o  nhcpanisoint.o\
@@ -163,30 +142,22 @@ OBJ    	= md_global.o  mpi_global.o  spme_global.o\
 	  mklist_rfh.o  mklist_dou.o  mklist_rpvw.o  mklist_cstmnb.o\
 	  mklist_cell.o  mklist_mor_cell.o  mklist_sh_cell.o\
 	  mklist_rfh_cell.o  mklist_dou_cell.o\
-	  calforce.o  calforce_hf.o  accforce.o  calcom.o\
-	  MPIsum_all_pot_for.o  MPIsum_all_viri.o  MPIsum_all_atm_heatf.o\
+	  calforce.o  accforce.o  calcom.o\
+	  MPIsum_all_pot_for.o  MPIsum_all_viri.o\
 	  contemp.o  contemp_e.o  contemp_nve.o  contemp_region.o\
 	  conhf_region.o  langevin_regist.o  langevin_region.o\
 	  mkmaxvel.o  cell_expand.o\
-	  calkin.o  calbond.o  calbond_hf.o  calangl.o  calangl_hf.o\
-	  calanglub.o  calanglub_hf.o\
-	  caltors.o  caltors_hf.o\
-	  caltorsrb.o  caltorsrb_hf.o\
-	  caltorsim.o  caltorsim_hf.o\
+	  calkin.o  calbond.o  calangl.o  calanglub.o\
+	  caltors.o  caltorsrb.o  caltorsim.o\
 	  calpress.o  calvol.o  calbox.o\
-	  ewaldr.o  ewaldr_hf.o  ewaldk_mpi.o  ewaldk_mpi_hf.o  fft_pme_mpi.o\
-	  calnon14.o  calnon14_hf.o  morse.o  morse_hf.o\
-	  shpot.o  shpot_hf.o  rfhpot.o  rfhpot_hf.o\
-	  doupot.o  doupot_hf.o\
-	  cnpvw.o\
-	  cstmnb.o  ent_calcstmnb.o  ent_calcstmnb_hf.o\
+	  ewaldr.o  ewaldk_mpi.o  fft_pme_mpi.o\
+	  calnon14.o  morse.o  shpot.o  rfhpot.o  doupot.o  cnpvw.o\
+	  cstmnb.o  ent_calcstmnb.o\
 	  calposres.o  calpotbias.o\
 	  rattle_mpi.o  rattle_mtk_mpi.o  rattle_z.o  rattle_zg.o\
-	  shake.o  shake_z.o  shake_zg.o\
+	  shake_mpi.o  shake_z.o  shake_zg.o\
 	  limitvel.o  ass_strmvel.o\
-	  calvirihf.o  calheatf.o  calmomentumf.o\
-	  output_data.o  output_for.o  output_hf.o  output_mf.o\
-	  output_thc.o  output_pdb.o  output_umb.o\
+	  output_data.o  output_for.o  output_thc.o  output_pdb.o  output_umb.o\
 	  output_eneem.o\
 	  time_global.o  time_method.o
 endif
@@ -227,7 +198,7 @@ mpi_global.F90: mpi_global.inc
 	rm -f temp >/dev/null
 
 #==========================================================================
-# Define the dependency
+# Define dependency
 #==========================================================================
 interface_interact.o: md_global.o  mpi_global.o
 
@@ -247,9 +218,9 @@ rdhfcont.o: interface_tools.o
 
 rdlangevin.o: interface_tools.o
 
-rdheatf.o: md_global.o  interface_tools.o
-
 rdpotbias.o: md_global.o  interface_tools.o
+
+openfile.o: mpi_global.o
 
 rdcor.o: md_global.o  interface_tools.o
 
@@ -301,8 +272,6 @@ prepdbout.o: md_global.o
 
 spline_interp.o: md_global.o  mpi_global.o
 
-preheatf.o: md_global.o
-
 prepmd.o: md_global.o
 
 prepewk.o: md_global.o
@@ -318,19 +287,16 @@ prepfennell.o: md_global.o
 wrsumm.o: md_global.o
 
 moldyn.o: md_global.o  mpi_global.o  time_global.o  cstmnb.o\
-	  interface_mdtech.o  interface_timer.o
+	   interface_mdtech.o  interface_timer.o
 
 moldyn_nhc.o: md_global.o  mpi_global.o  time_global.o  cstmnb.o\
-	      interface_mdtech.o  interface_timer.o
+	      	interface_mdtech.o  interface_timer.o
 
 moldyn_mtk.o: md_global.o  mpi_global.o  time_global.o  cstmnb.o\
-	      interface_mdtech.o  interface_timer.o
-
-moldyn_hf.o: md_global.o  mpi_global.o  time_global.o  cstmnb.o\
-	     interface_mdtech.o  interface_timer.o
+	       interface_mdtech.o  interface_timer.o
 
 enemin_sd.o: md_global.o  mpi_global.o  time_global.o  cstmnb.o\
-	     interface_mdtech.o  interface_timer.o
+	   interface_mdtech.o  interface_timer.o
 
 wrsta.o: md_global.o
 
@@ -375,11 +341,6 @@ MPIsum_all_pot_for.o: md_global.o  mpi_global.o
 
 MPIsum_all_viri.o: md_global.o  mpi_global.o
 
-calforce_hf.o: md_global.o  cstmnb.o  time_global.o\
-	        interface_interact.o  interface_timer.o
-
-MPIsum_all_atm_heatf.o: md_global.o  mpi_global.o
-
 calcom.o: md_global.o
 
 contemp.o: md_global.o
@@ -404,41 +365,23 @@ calkin.o: md_global.o
 
 calbond.o: md_global.o  mpi_global.o
 
-calbond_hf.o: md_global.o  mpi_global.o  interface_interact.o
-
 calangl.o: md_global.o  mpi_global.o
-
-calangl_hf.o: md_global.o  mpi_global.o  interface_interact.o
 
 calanglub.o: md_global.o  mpi_global.o
 
-calanglub_hf.o: md_global.o  mpi_global.o  interface_interact.o
-
 caltors.o: md_global.o  mpi_global.o  interface_interact.o
-
-caltors_hf.o: md_global.o  mpi_global.o  interface_interact.o
 
 caltorsrb.o: md_global.o  mpi_global.o  interface_interact.o
 
-caltorsrb_hf.o: md_global.o  mpi_global.o  interface_interact.o
-
 caltorsim.o: md_global.o  mpi_global.o  interface_interact.o
-
-caltorsim_hf.o: md_global.o  mpi_global.o  interface_interact.o
 
 calpress.o: md_global.o
 
 ewaldr.o: md_global.o  mpi_global.o
 
-ewaldr_hf.o: md_global.o  mpi_global.o  interface_interact.o
-
 ewaldk.o: md_global.o
 
-ewaldk_hf.o: md_global.o
-
 ewaldk_mpi.o: md_global.o  mpi_global.o
-
-ewaldk_mpi_hf.o: md_global.o  mpi_global.o
 
 fft_pme.o: md_global.o  spme_global.o  interface_interact.o
 
@@ -446,31 +389,19 @@ fft_pme_mpi.o: md_global.o  spme_global.o  mpi_global.o  interface_interact.o
 
 calnon14.o: md_global.o  mpi_global.o
 
-calnon14_hf.o: md_global.o  mpi_global.o  interface_interact.o
-
 morse.o: md_global.o  mpi_global.o
-
-morse_hf.o: md_global.o  mpi_global.o  interface_interact.o
 
 shpot.o: md_global.o  mpi_global.o
 
-shpot_hf.o: md_global.o  mpi_global.o  interface_interact.o
-
 rfhpot.o: md_global.o  mpi_global.o
-
-rfhpot_hf.o: md_global.o  mpi_global.o  interface_interact.o
 
 doupot.o: md_global.o  mpi_global.o
 
-doupot_hf.o: md_global.o  mpi_global.o  interface_interact.o
-
 cnpvw.o : md_global.o  mpi_global.o
 
-cstmnb.o : md_global.o  mpi_global.o  interface_interact.o
+cstmnb.o : md_global.o  mpi_global.o
 
 ent_calcstmnb.o : md_global.o  cstmnb.o
-
-ent_calcstmnb_hf.o : md_global.o  cstmnb.o
 
 calposres.o: md_global.o  mpi_global.o
 
@@ -500,19 +431,9 @@ limitvel.o: md_global.o
 
 ass_strmvel.o: md_global.o
 
-calvirihf.o: md_global.o
-
-calheatf.o: md_global.o
-
-calmomentumf.o: md_global.o
-
 output_data.o: md_global.o  interface_tools.o
 
 output_for.o: md_global.o
-
-output_hf.o: md_global.o  interface_tools.o
-
-output_mf.o: md_global.o  interface_tools.o
 
 output_thc.o: md_global.o  interface_tools.o
 

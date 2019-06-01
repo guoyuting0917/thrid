@@ -9,12 +9,11 @@ module mpi_global
                        ! nproc : number of concurrent processes
                        ! irank : process number of this process(0 to nproc-1)
   integer,save:: ierror
-                       ! ierror : return code of 1 routines
-  include "mpif.h"
+                       ! ierror : return code of MPI routines
   !---- loop variables
   integer,save:: loopinit,looplast ! do loop start and end point
   integer,save:: loopstep ! do loop step
-  !---- PME 1
+  !---- PME MPI
   integer,parameter:: maxnproc_fft = 1000
   integer,save:: xlimit1(0:maxnproc_fft), xlimit2(0:maxnproc_fft)
   integer,save:: zlimit1(0:maxnproc_fft), zlimit2(0:maxnproc_fft)
