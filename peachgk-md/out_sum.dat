@@ -52,10 +52,10 @@ iflocalfixzg       F
   nstep_med            1
 nstep_short            5
 
-    maxnstep    1000
+    maxnstep       1
       nstage       1
 
- nstep_stage  1    1000
+ nstep_stage  1       1
 mdcont_stage  1  md_nve
 
 nstep_maxwel      -1
@@ -130,11 +130,12 @@ nstep_bookrpvw           50
 ifcellindex_cstmnb       F
       ifbookcstmnb       F
 
-      natom    3644
-      nmole    3589
-      npoly       5
-   npolytyp       1
-npolymolety 1       5      12 C3H7OH_cor.dat                C3H7OH_top.dat                
+      natom    6364
+      nmole    3784
+      npoly     200
+   npolytyp       2
+npolymolety 1      10      12 C3H7OH_cor.dat                C3H7OH_top.dat                
+npolymolety 2     190      14 C4H10_cor.dat                 C4H10_top.dat                 
      nwater       0
  nwater_all       0
      nmatom    3584
@@ -146,7 +147,8 @@ npolymolety 1       5      12 C3H7OH_cor.dat                C3H7OH_top.dat
   nmatomtyp  5     224 PT
   nmatomtyp  6     224 PT
 
-    degfree_poly    1     180
+    degfree_poly    1     360
+    degfree_poly    2    7980
    degfree_water    1       0
       degfree_ma    1       0
       degfree_ma    2     672
@@ -155,10 +157,10 @@ npolymolety 1       5      12 C3H7OH_cor.dat                C3H7OH_top.dat
       degfree_ma    5     672
       degfree_ma    6       0
 
- degfree_polyall     180
+ degfree_polyall    8340
    degfree_water       0
    degfree_maall    9408
-     degfree_all    9588
+     degfree_all   17748
 
    ifstarec F
 ifcreatecor T

@@ -152,9 +152,9 @@ subroutine createcor(npoly,npolytyp,npoly_mole,npoly_atom, &
 
   vacum_layer = 15.0d-10 / xref
 
-  liquid_layer = 6.78d-10 / xref
+  liquid_layer = 60.0d-10 / xref
  
-  liquid_adsorb = 0 / xref  !adsorb layer by guo
+  liquid_adsorb = 10.0d-10 / xref  !adsorb layer by guo
 
 !------------------------z layer -------------------------
 
